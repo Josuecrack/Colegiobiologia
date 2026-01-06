@@ -1,0 +1,492 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Segundo Trimestre - Biología (2º Año)</title>
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+<style>
+body {
+    /* Gradiente "Sunset" (Tierra/Historia) para evocar Evolución y Fósiles */
+    background: linear-gradient(135deg, #3a1c71 0%, #d76d77 50%, #ffaf7b 100%);
+    min-height: 100vh;
+    color: white;
+    font-family: 'Segoe UI', sans-serif;
+}
+
+.glass-panel {
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(10px);
+    border-radius: 15px;
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+}
+
+.btn-topic {
+    background: rgba(255, 255, 255, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    color: white;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 18px;
+    cursor: pointer;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+}
+
+.btn-topic:hover {
+    background: rgba(255,255,255,0.35);
+    transform: translateY(-5px);
+    color: white;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+}
+
+/* --- ESTILOS AGREGADOS PARA EL EXAMEN --- */
+.btn-exam {
+    background: rgba(255, 255, 255, 0.15); /* Blanco translúcido */
+    border: 2px solid rgba(255, 255, 255, 0.7);
+    font-weight: bold;
+    font-size: 1.2rem;
+    color: #fff;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+.btn-exam:hover {
+    background: rgba(255, 255, 255, 0.3);
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
+    transform: scale(1.02);
+}
+
+.quiz-option {
+    display: block;
+    background: rgba(0,0,0,0.25);
+    padding: 10px 15px;
+    margin-bottom: 10px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: 0.2s;
+    border: 1px solid transparent;
+}
+.quiz-option:hover {
+    background: rgba(255,255,255,0.15);
+}
+.quiz-option input {
+    margin-right: 10px;
+}
+.correct-answer {
+    border: 2px solid #4ade80 !important; /* Verde */
+    background: rgba(74, 222, 128, 0.2) !important;
+}
+.wrong-answer {
+    border: 2px solid #ef4444 !important; /* Rojo */
+    background: rgba(239, 68, 68, 0.2) !important;
+}
+/* ---------------------------------------- */
+
+.breadcrumb-text {
+    font-size: 0.9rem;
+    opacity: 0.95;
+    font-weight: 500;
+}
+
+/* Ajuste para imágenes dentro del contenido */
+#topic-body img {
+    max-height: 300px;
+    object-fit: contain;
+    background: rgba(255,255,255,0.95);
+    padding: 10px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+/* Estilo para listas y subtítulos en el contenido */
+#topic-body h5 {
+    color: #ffd1a9; /* Tono durazno claro para resaltar sobre el fondo oscuro */
+    margin-top: 1.5rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+#topic-body ul {
+    list-style-type: none;
+    padding-left: 0;
+}
+#topic-body ul li {
+    background: rgba(0,0,0,0.25);
+    margin-bottom: 8px;
+    padding: 12px;
+    border-radius: 6px;
+    border-left: 5px solid #ffaf7b; /* Borde naranja suave */
+}
+</style>
+</head>
+
+<body class="d-flex flex-column align-items-center py-4">
+
+<header class="container mb-4">
+  <div class="d-flex justify-content-between align-items-center glass-panel p-3">
+    <a href="Segundo_Bachillerato.html" class="btn btn-sm btn-outline-light rounded-pill px-3">
+       &larr; Trimestres
+    </a>
+
+    <span class="breadcrumb-text" id="breadcrumbs">Segundo Año > Segundo Trimestre</span>
+  </div>
+</header>
+
+<main class="container text-center" style="max-width:900px">
+
+<!-- VISTA DE MENÚ -->
+<div id="menu-view">
+  <h1 class="display-5 fw-bold mb-2">Evolución y Biodiversidad</h1>
+  <p class="lead mb-4 opacity-90">Explora el origen y la clasificación de la vida</p>
+
+  <div class="row g-3">
+    <div class="col-md-6 col-lg-3"><div class="btn btn-topic" onclick="loadTopic(1)">Teorías de la evolución</div></div>
+    <div class="col-md-6 col-lg-3"><div class="btn btn-topic" onclick="loadTopic(2)">Selección natural</div></div>
+    <div class="col-md-6 col-lg-3"><div class="btn btn-topic" onclick="loadTopic(3)">Especiación</div></div>
+    <div class="col-md-6 col-lg-3"><div class="btn btn-topic" onclick="loadTopic(4)">Evidencia evolutiva</div></div>
+
+    <div class="col-md-6 col-lg-3"><div class="btn btn-topic" onclick="loadTopic(5)">Evolución humana</div></div>
+    <div class="col-md-6 col-lg-3"><div class="btn btn-topic" onclick="loadTopic(6)">Biodiversidad</div></div>
+    <div class="col-md-6 col-lg-3"><div class="btn btn-topic" onclick="loadTopic(7)">Clasificación</div></div>
+    <div class="col-md-6 col-lg-3"><div class="btn btn-topic" onclick="loadTopic(8)">Taxonomía</div></div>
+
+    <div class="col-md-6 col-lg-3 offset-lg-3"><div class="btn btn-topic" onclick="loadTopic(9)">Filogenia</div></div>
+    <div class="col-md-6 col-lg-3"><div class="btn btn-topic" onclick="loadTopic(10)">Sistemática</div></div>
+  </div>
+
+  <!-- SECCIÓN DEL BOTÓN DE EXAMEN -->
+  <div class="row mt-4">
+      <div class="col-12">
+        <hr class="border-light opacity-50 my-2">
+        <button class="btn btn-topic btn-exam w-100 py-3" onclick="loadExam()">
+            📝 REALIZAR EXAMEN DE REPASO
+        </button>
+      </div>
+  </div>
+</div>
+
+<!-- VISTA DE CONTENIDO (Teoría) -->
+<div id="content-view" class="d-none glass-panel p-5 text-start">
+  <h2 id="topic-title" class="border-bottom pb-3 mb-3"></h2>
+  <div id="topic-body" class="fs-5 fw-light"></div>
+
+  <div class="text-center mt-4">
+    <button class="btn btn-outline-light rounded-pill px-4" onclick="goHome()">Volver al menú</button>
+  </div>
+</div>
+
+<!-- VISTA DE EXAMEN -->
+<div id="exam-view" class="d-none glass-panel p-4 p-md-5 text-start">
+    <h2 class="border-bottom pb-3 mb-4 display-6 text-center">Examen: Evolución</h2>
+    
+    <div id="quiz-container">
+        <!-- Las preguntas se inyectan aquí con JS -->
+    </div>
+
+    <div id="quiz-result-area" class="text-center mt-4 d-none">
+        <h3 id="final-score" class="fw-bold display-4"></h3>
+        <p id="final-message" class="fs-5"></p>
+    </div>
+
+    <div class="text-center mt-5 d-flex justify-content-center gap-3">
+        <button id="btn-submit-exam" class="btn btn-light text-danger fw-bold rounded-pill px-5 py-2" onclick="checkExam()">Finalizar Examen</button>
+        <button class="btn btn-outline-light rounded-pill px-5 py-2" onclick="goHome()">Volver al menú</button>
+    </div>
+</div>
+
+</main>
+
+<script>
+// --- DATOS DE LOS TEMAS (CONTENIDO ORIGINAL COMPLETO RESTAURADO) ---
+const topics = {
+1:{
+  title:"Teorías de la evolución",
+  content:`
+  <div class="text-center"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/ae/Darwin%27s_finches_by_Gould.jpg/640px-Darwin%27s_finches_by_Gould.jpg" class="img-fluid rounded mb-3"></div>
+  <p>A lo largo de la historia, la humanidad ha buscado explicar la diversidad de la vida. Antes de Darwin, predominaba el <strong>Fijismo</strong> (las especies son inmutables).</p>
+  
+  <h5>Principales Corrientes:</h5>
+  <ul>
+    <li><strong>Lamarckismo (J.B. Lamarck, 1809):</strong> Propuso la "herencia de los caracteres adquiridos". Creía que el uso o desuso de un órgano lo desarrollaba o atrofiaba (ej. el cuello de la jirafa) y que esto se pasaba a los hijos. Hoy sabemos que es incorrecto genéticamente.</li>
+    <li><strong>Darwinismo (C. Darwin y A. Wallace, 1859):</strong> Propusieron que las especies cambian gradualmente mediante la <strong>selección natural</strong>. No sabían de genes, pero observaron la variabilidad en las poblaciones.</li>
+    <li><strong>Neodarwinismo (Teoría Sintética):</strong> Une a Darwin con la genética de Mendel. Explica que la evolución ocurre por cambios en las frecuencias de los alelos en una población debido a mutaciones, selección y deriva genética.</li>
+  </ul>`
+},
+
+2:{
+  title:"Selección natural",
+  content:`
+  <div class="text-center"><img src="https://s1.significados.com/foto/seleccion-natural-og.jpg" class="img-fluid rounded mb-3"></div>
+  <p>Es el motor principal de la evolución. No es que "el más fuerte sobrevive", sino "el que mejor se adapta al entorno actual".</p>
+
+  <h5>Los 3 Pilares:</h5>
+  <ul>
+    <li><strong>Variabilidad:</strong> Los individuos de una población no son idénticos (diferente color, tamaño, resistencia).</li>
+    <li><strong>Presión Selectiva:</strong> El ambiente (depredadores, clima, falta de comida) pone a prueba a los individuos.</li>
+    <li><strong>Reproducción Diferencial:</strong> Aquellos con rasgos favorables (adaptaciones) tienen más probabilidad de sobrevivir y dejar descendencia, pasando esos rasgos a la siguiente generación.</li>
+  </ul>
+  <p><em>Ejemplo clásico:</em> Las polillas oscuras sobrevivieron mejor durante la Revolución Industrial porque se camuflaban en los árboles llenos de hollín.</p>`
+},
+
+3:{
+  title:"Especiación",
+  content:`
+  <div class="text-center"><img src="https://avesdeperu.org/wp-content/uploads/2023/07/proceso-especiacion-aves-1024x768.jpg" class="img-fluid rounded mb-3"></div>
+  <p>Es el proceso mediante el cual una especie da lugar a dos o más especies distintas. Es el origen de la biodiversidad.</p>
+  
+  <h5>Mecanismos:</h5>
+  <ul>
+    <li><strong>Aislamiento Geográfico (Especiación Alopátrica):</strong> Una barrera física (río, montaña, isla) separa una población en dos. Con el tiempo, cada grupo acumula cambios diferentes hasta que ya no pueden cruzarse.</li>
+    <li><strong>Aislamiento Reproductivo:</strong> Aunque vivan juntos, desarrollan barreras biológicas.
+      <br>- <em>Precigóticas:</em> Cantos diferentes, épocas de celo distintas.
+      <br>- <em>Postcigóticas:</em> El híbrido es estéril (ej. la mula).</li>
+  </ul>`
+},
+
+4:{
+  title:"Evidencia de la evolución",
+  content:`
+  <div class="text-center"><img src="https://image.slidesharecdn.com/13-151115010448-lva1-app6891/75/13-Evidencias-de-la-evolucion-1-2048.jpg" class="img-fluid rounded mb-3"></div>
+  <p>La evolución no es una "creencia", es un hecho científico respaldado por múltiples disciplinas.</p>
+  
+  <h5>Pruebas contundentes:</h5>
+  <ul>
+    <li><strong>Paleontológicas (Fósiles):</strong> Muestran formas de transición (ej. <em>Archaeopteryx</em>, eslabón entre dinosaurios y aves).</li>
+    <li><strong>Anatomía Comparada:</strong>
+      <br>- <em>Órganos Homólogos:</em> Misma estructura interna, diferente función (ala de murciélago y brazo humano = ancestro común).
+      <br>- <em>Órganos Vestigiales:</em> Restos inútiles de ancestros (coxis, apéndice).</li>
+    <li><strong>Embriología:</strong> Los embriones de vertebrados son muy similares en etapas tempranas (todos tenemos branquias y cola al inicio).</li>
+    <li><strong>Biología Molecular:</strong> Todos usamos el mismo código genético (ADN). Compartimos el 98% de genes con el chimpancé.</li>
+  </ul>`
+},
+
+5:{
+  title:"Evolución humana",
+  content:`
+  <div class="text-center"><img src="https://i0.wp.com/tumapaconceptual.com/wp-content/uploads/2024/02/Linea-de-tiempo-de-la-evolucion-humana.webp?resize=1024%2C637&ssl=1" class="img-fluid rounded mb-3"></div>
+  <p>El ser humano (Homo sapiens) no "viene del mono" actual, sino que compartimos un ancestro común con los grandes simios hace unos 6 millones de años.</p>
+
+  <h5>Nuestro viaje evolutivo:</h5>
+  <ul>
+    <li><strong>Australopithecus (hace 4 Ma):</strong> Bipedismo (caminar erguido) fue el primer gran cambio, liberando las manos.</li>
+    <li><strong>Homo habilis (hace 2.4 Ma):</strong> Primeros fabricantes de herramientas de piedra. Aumento cerebral.</li>
+    <li><strong>Homo erectus (hace 1.8 Ma):</strong> Dominó el fuego y salió de África.</li>
+    <li><strong>Homo neanderthalensis:</strong> Convivió con nosotros en Europa. Enterraba a sus muertos (pensamiento simbólico).</li>
+    <li><strong>Homo sapiens:</strong> Surgió en África hace 300,000 años. Desarrolló lenguaje complejo y arte.</li>
+  </ul>`
+},
+
+6:{
+  title:"Biodiversidad",
+  content:`
+  <div class="text-center"><img src="https://i0.wp.com/ecoosfera.com/wp-content/uploads/2025/05/Animales-en-peligro-de-extincion-presentacion-multimedia-verde.jpg" class="img-fluid rounded mb-3"></div>
+  <p>Es la variedad de la vida en la Tierra en todas sus formas y niveles de organización. Es la red de seguridad del planeta.</p>
+  
+  <h5>Tres niveles:</h5>
+  <ul>
+    <li><strong>Diversidad Genética:</strong> Variedad de genes dentro de una misma especie (permite resistir enfermedades).</li>
+    <li><strong>Diversidad de Especies:</strong> Cantidad de especies diferentes en un hábitat.</li>
+    <li><strong>Diversidad de Ecosistemas:</strong> Variedad de hábitats (bosques, desiertos, arrecifes).</li>
+  </ul>
+  <p>Actualmente enfrentamos la "Sexta Extinción Masiva" debido a la actividad humana.</p>`
+},
+
+7:{
+  title:"Clasificación de seres vivos",
+  content:`
+  <div class="text-center"><img src="https://cdn0.ecologiaverde.com/es/posts/2/5/2/seres_vivos_que_son_caracteristicas_y_clasificacion_4252_orig.jpg" class="img-fluid rounded mb-3"></div>
+  <p>Para estudiar la inmensa biodiversidad, necesitamos ordenarla. Los sistemas han cambiado con el tiempo.</p>
+  
+  <h5>Historia:</h5>
+  <ul>
+    <li><strong>Aristóteles:</strong> Clasificó animales en "con sangre" y "sin sangre".</li>
+    <li><strong>Linneo (S. XVIII):</strong> Padre de la taxonomía moderna. Creó el sistema binomial.</li>
+    <li><strong>Sistema de 5 Reinos (Whittaker, 1969):</strong> Monera, Protista, Fungi, Plantae y Animalia.</li>
+    <li><strong>Sistema de 3 Dominios (Woese, 1990):</strong> Basado en el ARN ribosomal. Separa a las bacterias en dos grupos distintos: <strong>Archaea</strong>, <strong>Bacteria</strong> y <strong>Eukarya</strong> (todos los eucariotas).</li>
+  </ul>`
+},
+
+8:{
+  title:"Taxonomía",
+  content:`
+  <div class="text-center"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a5/Biological_classification_L_Pengo_vflip.svg/350px-Biological_classification_L_Pengo_vflip.svg.png" class="img-fluid rounded mb-3"></div>
+  <p>Es la ciencia de nombrar y clasificar a los organismos en grupos jerárquicos llamados <strong>taxones</strong>.</p>
+  
+  <h5>Jerarquía Taxonómica (De mayor a menor):</h5>
+  <ul>
+    <li>Dominio > Reino > Filo (o División) > Clase > Orden > Familia > Género > Especie.</li>
+  </ul>
+  
+  <h5>Nomenclatura Binomial:</h5>
+  <p>Cada especie tiene un nombre único en latín formado por dos palabras: <em>Género</em> (con mayúscula) y <em>especie</em> (con minúscula), escrito en cursiva.</p>
+  <p><em>Ejemplo:</em> <strong><em>Homo sapiens</em></strong> (Homo = Género, sapiens = especie), <strong><em>Canis lupus</em></strong> (Lobo).</p>`
+},
+
+9:{
+  title:"Filogenia",
+  content:`
+  <div class="text-center"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/11/Tree_of_life_SVG.svg/640px-Tree_of_life_SVG.svg.png" class="img-fluid rounded mb-3"></div>
+  <p>Si la taxonomía pone los nombres, la filogenia cuenta la historia. Estudia las relaciones de parentesco evolutivo entre las especies.</p>
+  
+  <h5>Herramientas:</h5>
+  <ul>
+    <li><strong>Árboles Filogenéticos:</strong> Diagramas que muestran cómo las especies se ramifican desde ancestros comunes (como un árbol genealógico familiar, pero de millones de años).</li>
+    <li><strong>Cladogramas:</strong> Gráficos que agrupan organismos basándose en caracteres compartidos derivados (sinapomorfías).</li>
+  </ul>
+  <p>La filogenia moderna usa secuencias de ADN para descubrir parentescos que la apariencia física esconde (ej. los hongos están más emparentados con los animales que con las plantas).</p>`
+},
+
+10:{
+  title:"Sistemática",
+  content:`
+  <div class="text-center"><img src="https://ecosistemaglobal.wordpress.com/wp-content/uploads/2013/03/clasificacion-de-los-seres-vivos.png" class="img-fluid rounded mb-3"></div>
+  <p>Es la disciplina integradora que engloba a la taxonomía y la filogenia. Su objetivo es comprender la historia evolutiva de la vida y organizar el conocimiento biológico.</p>
+  
+  <h5>Objetivos:</h5>
+  <ul>
+    <li>Descubrir todas las especies del planeta (Inventario de la biodiversidad).</li>
+    <li>Reconstruir las relaciones evolutivas (quién es pariente de quién).</li>
+    <li>Crear clasificaciones que reflejen la evolución real, no solo la semejanza superficial.</li>
+  </ul>
+  <p>La sistemática es fundamental para la biología de la conservación, pues no podemos proteger lo que no conocemos ni entendemos.</p>`
+}
+};
+
+// --- DATOS DEL EXAMEN ---
+const questions = [
+    {
+        q: "¿Quién propuso la teoría de la Selección Natural?",
+        a: ["Lamarck", "Gregor Mendel", "Charles Darwin", "Louis Pasteur"],
+        correct: 2
+    },
+    {
+        q: "¿Qué nombre recibe el sistema de dos palabras para nombrar especies (ej. Homo sapiens)?",
+        a: ["Nomenclatura Binomial", "Sistema Métrico", "Clasificación Decimal", "Código Genético"],
+        correct: 0
+    },
+    {
+        q: "¿Cuál fue el primer gran cambio evolutivo que separó a los homínidos de los simios?",
+        a: ["Uso del fuego", "Cerebro grande", "Bipedismo (caminar erguido)", "Hablar"],
+        correct: 2
+    },
+    {
+        q: "La aleta de una ballena y el brazo de un humano tienen huesos similares. Esto es un ejemplo de:",
+        a: ["Órganos Vestigiales", "Órganos Homólogos", "Convergencia", "Casualidad"],
+        correct: 1
+    },
+    {
+        q: "¿Qué dominio incluye a plantas, animales, hongos y protistas?",
+        a: ["Bacteria", "Archaea", "Eukarya", "Virus"],
+        correct: 2
+    }
+];
+
+// --- FUNCIONES DE NAVEGACIÓN ---
+
+function loadTopic(id){
+  document.getElementById("menu-view").classList.add("d-none");
+  document.getElementById("exam-view").classList.add("d-none");
+  document.getElementById("content-view").classList.remove("d-none");
+  
+  document.getElementById("topic-title").innerText=topics[id].title;
+  document.getElementById("topic-body").innerHTML=topics[id].content;
+  document.getElementById("breadcrumbs").innerText="Segundo Año > Segundo Trimestre > "+topics[id].title;
+  window.scrollTo(0, 0);
+}
+
+function goHome(){
+  document.getElementById("content-view").classList.add("d-none");
+  document.getElementById("exam-view").classList.add("d-none");
+  document.getElementById("menu-view").classList.remove("d-none");
+  document.getElementById("breadcrumbs").innerText="Segundo Año > Segundo Trimestre";
+  
+  // Resetear examen visualmente
+  document.getElementById("btn-submit-exam").style.display = "inline-block";
+  document.getElementById("quiz-result-area").classList.add("d-none");
+}
+
+// --- LÓGICA DEL EXAMEN ---
+
+function loadExam() {
+    document.getElementById("menu-view").classList.add("d-none");
+    document.getElementById("exam-view").classList.remove("d-none");
+    document.getElementById("breadcrumbs").innerText="Segundo Año > Segundo Trimestre > Examen";
+    
+    // Generar el HTML de las preguntas
+    const container = document.getElementById("quiz-container");
+    container.innerHTML = ""; 
+    
+    questions.forEach((item, index) => {
+        let optionsHTML = "";
+        item.a.forEach((opt, optIndex) => {
+            optionsHTML += `
+                <label class="quiz-option" id="q${index}_opt${optIndex}">
+                    <input type="radio" name="question${index}" value="${optIndex}">
+                    ${opt}
+                </label>
+            `;
+        });
+
+        const questionHTML = `
+            <div class="mb-4">
+                <h5 class="fw-bold mb-3" style="color:#ffd1a9;">${index + 1}. ${item.q}</h5>
+                <div class="ms-2">
+                    ${optionsHTML}
+                </div>
+            </div>
+        `;
+        container.innerHTML += questionHTML;
+    });
+
+    document.getElementById("btn-submit-exam").style.display = "inline-block";
+    document.getElementById("quiz-result-area").classList.add("d-none");
+    window.scrollTo(0, 0);
+}
+
+function checkExam() {
+    let score = 0;
+    
+    questions.forEach((item, index) => {
+        const selected = document.querySelector(`input[name="question${index}"]:checked`);
+        const correctLabel = document.getElementById(`q${index}_opt${item.correct}`);
+        
+        if (selected) {
+            const val = parseInt(selected.value);
+            if (val === item.correct) {
+                score++;
+                correctLabel.classList.add("correct-answer");
+            } else {
+                document.getElementById(`q${index}_opt${val}`).classList.add("wrong-answer");
+                correctLabel.classList.add("correct-answer");
+            }
+        } else {
+            correctLabel.classList.add("correct-answer");
+        }
+    });
+
+    const finalScore = (score / questions.length) * 10;
+    
+    const resultArea = document.getElementById("quiz-result-area");
+    const scoreTitle = document.getElementById("final-score");
+    const message = document.getElementById("final-message");
+    
+    resultArea.classList.remove("d-none");
+    scoreTitle.innerText = finalScore + "/10";
+    
+    if(finalScore === 10) message.innerText = "¡Excelente! Comprendes perfectamente la evolución.";
+    else if(finalScore >= 7) message.innerText = "¡Muy bien! Conceptos claros.";
+    else message.innerText = "Repasa las teorías evolutivas y la taxonomía.";
+
+    document.getElementById("btn-submit-exam").style.display = "none";
+    resultArea.scrollIntoView({behavior: "smooth"});
+}
+</script>
+
+</body>
+</html>

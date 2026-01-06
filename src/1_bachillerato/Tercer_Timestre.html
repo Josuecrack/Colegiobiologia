@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tercer Trimestre - Biología (1º Año)</title>
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+<style>
+body {
+    /* Gradiente Rojo/Carmesí para evocar Sangre, Vitalidad y Ciclo de Vida */
+    background: linear-gradient(135deg, #D31027 0%, #EA384D 100%);
+    min-height: 100vh;
+    color: white;
+    font-family: 'Segoe UI', sans-serif;
+}
+
+.glass-panel {
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border-radius: 15px;
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
+}
+
+.btn-topic {
+    background: rgba(255, 255, 255, 0.15);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    color: white;
+    font-weight: 500;
+    transition: 0.3s;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 18px;
+    cursor: pointer;
+    text-shadow: 0 1px 2px rgba(0,0,0,0.1);
+}
+
+.btn-topic:hover {
+    background: rgba(255,255,255,0.3);
+    transform: translateY(-3px);
+    color: white;
+    box-shadow: 0 4px 15px rgba(211, 16, 39, 0.5); /* Brillo rojo */
+}
+
+/* Estilo especial para el botón de examen */
+.btn-exam {
+    background: rgba(255, 215, 0, 0.25); /* Dorado translúcido */
+    border: 2px solid rgba(255, 215, 0, 0.6);
+    font-weight: bold;
+    font-size: 1.2rem;
+    color: #fff;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+.btn-exam:hover {
+    background: rgba(255, 215, 0, 0.45);
+    box-shadow: 0 0 20px rgba(255, 215, 0, 0.6);
+    transform: scale(1.02);
+}
+
+.breadcrumb-text {
+    font-size: 0.9rem;
+    opacity: 0.9;
+}
+
+/* Ajuste para imágenes dentro del contenido */
+#topic-body img {
+    max-height: 300px;
+    width: auto;
+    max-width: 100%;
+    object-fit: cover;
+    background: rgba(255,255,255,0.9);
+    padding: 5px;
+    border-radius: 8px;
+    margin-bottom: 1rem;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+}
+
+/* Estilo para listas y subtítulos en el contenido */
+#topic-body h5 {
+    color: #ffcccc; /* Rosa pálido/blanco roto para resaltar */
+    margin-top: 1.5rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    font-size: 1.1rem;
+}
+#topic-body ul {
+    list-style-type: none;
+    padding-left: 0;
+}
+#topic-body ul li {
+    background: rgba(0,0,0,0.2);
+    margin-bottom: 8px;
+    padding: 10px;
+    border-radius: 5px;
+    border-left: 4px solid #ffcccc;
+}
+
+/* Estilos para el Examen */
+.quiz-option {
+    display: block;
+    background: rgba(0,0,0,0.2);
+    padding: 10px 15px;
+    margin-bottom: 10px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: 0.2s;
+    border: 1px solid transparent;
+}
+.quiz-option:hover {
+    background: rgba(255,255,255,0.1);
+}
+.quiz-option input {
+    margin-right: 10px;
+}
+.correct-answer {
+    border: 2px solid #4ade80 !important; /* Verde */
+    background: rgba(74, 222, 128, 0.2) !important;
+}
+.wrong-answer {
+    border: 2px solid #ef4444 !important; /* Rojo */
+    background: rgba(239, 68, 68, 0.2) !important;
+}
+</style>
+</head>
+
+<body class="d-flex flex-column align-items-center py-4">
+
+<header class="container mb-4">
+  <div class="d-flex justify-content-between align-items-center glass-panel p-3">
+    <a href="Primero_Bachillerato.html" class="btn btn-sm btn-outline-light rounded-pill px-3">
+       &larr; Trimestres
+    </a>
+
+    <span class="breadcrumb-text" id="breadcrumbs">Primer Año > Tercer Trimestre</span>
+  </div>
+</header>
+
+<main class="container text-center" style="max-width:900px">
+
+<div id="menu-view">
+  <h1 class="display-5 fw-bold mb-4">Continuidad de la Vida</h1>
+   
+  <div class="row g-3">
+    <div class="col-md-6 col-lg-3"><div class="btn btn-topic" onclick="loadTopic(1)">Reproducción celular</div></div>
+    <div class="col-md-6 col-lg-3"><div class="btn btn-topic" onclick="loadTopic(2)">Reprod. sexual y asexual</div></div>
+    <div class="col-md-6 col-lg-3"><div class="btn btn-topic" onclick="loadTopic(3)">Gametogénesis</div></div>
+    <div class="col-md-6 col-lg-3"><div class="btn btn-topic" onclick="loadTopic(4)">Fecundación</div></div>
+
+    <div class="col-md-6 col-lg-3"><div class="btn btn-topic" onclick="loadTopic(5)">Desarrollo embrionario</div></div>
+    <div class="col-md-6 col-lg-3"><div class="btn btn-topic" onclick="loadTopic(6)">Crecimiento y desarrollo</div></div>
+    <div class="col-md-6 col-lg-3"><div class="btn btn-topic" onclick="loadTopic(7)">Envejecimiento</div></div>
+    <div class="col-md-6 col-lg-3"><div class="btn btn-topic" onclick="loadTopic(8)">Muerte celular</div></div>
+
+    <div class="col-md-6 col-lg-3 offset-lg-3"><div class="btn btn-topic" onclick="loadTopic(9)">Regeneración</div></div>
+    <div class="col-md-6 col-lg-3"><div class="btn btn-topic" onclick="loadTopic(10)">Homeostasis</div></div>
+  </div>
+
+  <div class="row mt-4">
+      <div class="col-12">
+        <hr class="border-light opacity-50 my-4">
+        <button class="btn btn-topic btn-exam w-100 py-3" onclick="loadExam()">
+            📝 REALIZAR EXAMEN DE REPASO
+        </button>
+      </div>
+  </div>
+</div>
+
+<div id="content-view" class="d-none glass-panel p-4 p-md-5 text-start">
+  <h2 id="topic-title" class="border-bottom pb-3 mb-3 display-6"></h2>
+  <div id="topic-body" class="fs-5 fw-light"></div>
+
+  <div class="text-center mt-5">
+    <button class="btn btn-outline-light rounded-pill px-5 py-2" onclick="goHome()">Volver al menú</button>
+  </div>
+</div>
+
+<div id="exam-view" class="d-none glass-panel p-4 p-md-5 text-start">
+    <h2 class="border-bottom pb-3 mb-4 display-6 text-center">Examen: Continuidad y Homeostasis</h2>
+    
+    <div id="quiz-container">
+        </div>
+
+    <div id="quiz-result-area" class="text-center mt-4 d-none">
+        <h3 id="final-score" class="fw-bold display-4"></h3>
+        <p id="final-message" class="fs-5"></p>
+    </div>
+
+    <div class="text-center mt-5 d-flex justify-content-center gap-3">
+        <button id="btn-submit-exam" class="btn btn-light text-danger fw-bold rounded-pill px-5 py-2" onclick="checkExam()">Finalizar Examen</button>
+        <button class="btn btn-outline-light rounded-pill px-5 py-2" onclick="goHome()">Volver al menú</button>
+    </div>
+</div>
+
+</main>
+
+<script>
+// --- DATOS DE LOS TEMAS (TEORÍA) ---
+const topics = {
+1:{
+  title:"Reproducción celular",
+  content:`
+  <div class="text-center"><img src="https://concepto.de/wp-content/uploads/2019/09/reproduccion-celular-division-800x400.jpg" class="img-fluid rounded mb-3" alt="Mitosis"></div>
+  <p>Proceso para generar nuevas células.</p>
+  <ul>
+    <li><strong>Unicelulares:</strong> Aumenta la población.</li>
+    <li><strong>Pluricelulares:</strong> Crecimiento y reparación de tejidos.</li>
+  </ul>`
+},
+2:{
+  title:"Reproducción sexual y asexual",
+  content:`
+  <div class="text-center"><img src="https://lh4.googleusercontent.com/proxy/vJtOCqJnxnGqZa7-WdBavpRDL9LATNTf4e1aEfGrhcUm2ZL0kjJtFbvbOTIeOYyODmkwv1fOZjABF5Vj8QrsEuwtT4nntLQ" class="img-fluid rounded mb-3" alt="Asexual"></div>
+  <p>Estrategias para perpetuar la especie.</p>
+  <ul>
+    <li><strong>Asexual:</strong> 1 progenitor, clones idénticos. Rápida pero riesgosa ante cambios.</li>
+    <li><strong>Sexual:</strong> 2 progenitores, variabilidad genética. Permite adaptación.</li>
+  </ul>`
+},
+3:{
+  title:"Gametogénesis",
+  content:`
+  <div class="text-center"><img src="data:image/png;base64,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" class="img-fluid rounded mb-3" alt="Gametogénesis"></div>
+  <p>Formación de gametos mediante Meiosis.</p>
+  <ul>
+    <li><strong>Espermatogénesis:</strong> Continua en testículos.</li>
+    <li><strong>Ovogénesis:</strong> Cíclica en ovarios, se detiene en menopausia.</li>
+  </ul>`
+},
+4:{
+  title:"Fecundación",
+  content:`
+  <div class="text-center"><img src="https://www.reproduccionasistida.org/wp-content/uploads/2024/04/proceso-de-fecundacion-del-ovulo.png" class="img-fluid rounded mb-3" alt="Fecundación"></div>
+  <p>Unión de óvulo y espermatozoide.</p>
+  <ul>
+    <li>Forma el <strong>Cigoto</strong> (2n).</li>
+    <li>Restablece el número de cromosomas (46).</li>
+  </ul>`
+},
+5:{
+  title:"Desarrollo embrionario",
+  content:`
+  <div class="text-center"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTo8iskEEfgyU0WnfxPsd0z5R1BRTkvuOLidw&s" class="img-fluid rounded mb-3" alt="Embrión"></div>
+  <ul>
+    <li><strong>Segmentación:</strong> Cigoto -> Mórula -> Blástula.</li>
+    <li><strong>Gastrulación:</strong> Formación de capas (Ecto, Meso y Endodermo).</li>
+    <li><strong>Organogénesis:</strong> Formación de órganos.</li>
+  </ul>`
+},
+6:{
+  title:"Crecimiento y desarrollo",
+  content:`
+  <div class="text-center"><img src="https://www.abc.com.py/resizer/v2/https%3A%2F%2Farc-anglerfish-arc2-prod-abccolor.s3.amazonaws.com%2Fpublic%2FPG4TIOGAKBEGVEIQ67LEF6TOEI.jpg?auth=5cda3591da9d06814bc8ae3222f89b2436f119f98546d04b02b4d4e16518358a&width=770&smart=true" class="img-fluid rounded mb-3" alt="Crecimiento"></div>
+  <ul>
+    <li><strong>Crecimiento:</strong> Aumento de tamaño y masa (Cuantitativo).</li>
+    <li><strong>Desarrollo:</strong> Adquisición de funciones y maduración (Cualitativo).</li>
+  </ul>`
+},
+7:{
+  title:"Envejecimiento",
+  content:`
+  <div class="text-center"><img src="https://www.lavanguardia.com/files/image_449_220/uploads/2024/10/16/670f8da4cec55.jpeg" class="img-fluid rounded mb-3" alt="Vejez"></div>
+  <p>Deterioro natural de funciones.</p>
+  <ul>
+    <li>Acortamiento de telómeros.</li>
+    <li>Estrés oxidativo (radicales libres).</li>
+  </ul>`
+},
+8:{
+  title:"Muerte celular",
+  content:`
+  <div class="text-center"><img src="https://diagnostika.co.cr/wp-content/uploads/2025/02/Copia-de-Entradas-Pagina-Web-12-600x600.png" class="img-fluid rounded mb-3" alt="Muerte celular"></div>
+  <ul>
+    <li><strong>Apoptosis:</strong> Muerte programada y limpia (suicidio celular).</li>
+    <li><strong>Necrosis:</strong> Muerte accidental por daño (inflamación).</li>
+  </ul>`
+},
+9:{
+  title:"Regeneración",
+  content:`
+  <div class="text-center"><img src="https://upload.wikimedia.org/wikipedia/commons/9/94/Captura_de_pantalla_2012-11-25_a_las_17.01.58.png" class="img-fluid rounded mb-3" alt="Regeneración"></div>
+  <p>Restaurar tejidos. En humanos es limitada (hígado, piel), en otros animales (ajolote) es total.</p>`
+},
+10:{
+  title:"Homeostasis",
+  content:`
+  <div class="text-center"><img src="https://www.biologyonline.com/wp-content/uploads/2020/02/Physiological-Homeostasis.jpg" class="img-fluid rounded mb-3" alt="Homeostasis"></div>
+  <p>Equilibrio interno estable.</p>
+  <ul>
+    <li>Termorregulación (temperatura).</li>
+    <li>Osmorregulación (agua).</li>
+    <li>Glucorregulación (azúcar).</li>
+  </ul>`
+}
+};
+
+// --- DATOS DEL EXAMEN (Adaptados al 3er Trimestre) ---
+const questions = [
+    {
+        q: "¿Cuál es la principal ventaja de la reproducción sexual frente a la asexual?",
+        a: ["Es más rápida", "No gasta energía", "Genera variabilidad genética (adaptación)", "Requiere un solo individuo"],
+        correct: 2
+    },
+    {
+        q: "¿Qué nombre recibe la célula formada inmediatamente tras la fecundación?",
+        a: ["Embrión", "Feto", "Gástrula", "Cigoto"],
+        correct: 3
+    },
+    {
+        q: "¿Cómo se llama la 'muerte celular programada' que es ordenada y beneficiosa?",
+        a: ["Necrosis", "Apoptosis", "Homeostasis", "Mitosis"],
+        correct: 1
+    },
+    {
+        q: "¿Qué capacidad biológica nos permite mantener la temperatura y el agua en equilibrio?",
+        a: ["Homeostasis", "Gametogénesis", "Fotosíntesis", "Segmentación"],
+        correct: 0
+    },
+    {
+        q: "¿En qué etapa del desarrollo se forman las 3 capas de tejido (ectodermo, mesodermo...)?",
+        a: ["Fecundación", "Gastrulación", "Nacimiento", "Pubertad"],
+        correct: 1
+    }
+];
+
+// --- FUNCIONES DE NAVEGACIÓN ---
+
+function loadTopic(id){
+  document.getElementById("menu-view").classList.add("d-none");
+  document.getElementById("exam-view").classList.add("d-none");
+  document.getElementById("content-view").classList.remove("d-none");
+  
+  document.getElementById("topic-title").innerText=topics[id].title;
+  document.getElementById("topic-body").innerHTML=topics[id].content;
+  document.getElementById("breadcrumbs").innerText="Primer Año > Tercer Trimestre > "+topics[id].title;
+  window.scrollTo(0, 0);
+}
+
+function goHome(){
+  document.getElementById("content-view").classList.add("d-none");
+  document.getElementById("exam-view").classList.add("d-none");
+  document.getElementById("menu-view").classList.remove("d-none");
+  document.getElementById("breadcrumbs").innerText="Primer Año > Tercer Trimestre";
+  
+  // Resetear examen visualmente
+  document.getElementById("btn-submit-exam").style.display = "inline-block";
+  document.getElementById("quiz-result-area").classList.add("d-none");
+}
+
+// --- LÓGICA DEL EXAMEN ---
+
+function loadExam() {
+    document.getElementById("menu-view").classList.add("d-none");
+    document.getElementById("exam-view").classList.remove("d-none");
+    document.getElementById("breadcrumbs").innerText="Primer Año > Tercer Trimestre > Examen";
+    
+    // Generar el HTML de las preguntas
+    const container = document.getElementById("quiz-container");
+    container.innerHTML = ""; 
+    
+    questions.forEach((item, index) => {
+        let optionsHTML = "";
+        item.a.forEach((opt, optIndex) => {
+            optionsHTML += `
+                <label class="quiz-option" id="q${index}_opt${optIndex}">
+                    <input type="radio" name="question${index}" value="${optIndex}">
+                    ${opt}
+                </label>
+            `;
+        });
+
+        const questionHTML = `
+            <div class="mb-4">
+                <h5 class="fw-bold mb-3">${index + 1}. ${item.q}</h5>
+                <div class="ms-2">
+                    ${optionsHTML}
+                </div>
+            </div>
+        `;
+        container.innerHTML += questionHTML;
+    });
+
+    document.getElementById("btn-submit-exam").style.display = "inline-block";
+    document.getElementById("quiz-result-area").classList.add("d-none");
+    window.scrollTo(0, 0);
+}
+
+function checkExam() {
+    let score = 0;
+    
+    questions.forEach((item, index) => {
+        const selected = document.querySelector(`input[name="question${index}"]:checked`);
+        const correctLabel = document.getElementById(`q${index}_opt${item.correct}`);
+        
+        if (selected) {
+            const val = parseInt(selected.value);
+            if (val === item.correct) {
+                score++;
+                correctLabel.classList.add("correct-answer");
+            } else {
+                document.getElementById(`q${index}_opt${val}`).classList.add("wrong-answer");
+                correctLabel.classList.add("correct-answer");
+            }
+        } else {
+            correctLabel.classList.add("correct-answer");
+        }
+    });
+
+    const finalScore = (score / questions.length) * 10;
+    
+    const resultArea = document.getElementById("quiz-result-area");
+    const scoreTitle = document.getElementById("final-score");
+    const message = document.getElementById("final-message");
+    
+    resultArea.classList.remove("d-none");
+    scoreTitle.innerText = finalScore + "/10";
+    
+    if(finalScore === 10) message.innerText = "¡Perfecto! Entiendes la continuidad de la vida.";
+    else if(finalScore >= 7) message.innerText = "¡Muy bien! Buenos conocimientos.";
+    else message.innerText = "Repasa las diferencias entre reproducción sexual y asexual.";
+
+    document.getElementById("btn-submit-exam").style.display = "none";
+    resultArea.scrollIntoView({behavior: "smooth"});
+}
+</script>
+
+</body>
+</html>

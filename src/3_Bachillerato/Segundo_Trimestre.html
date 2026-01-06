@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tercer Trimestre - Biología (3º Año)</title>
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+<style>
+body {
+    /* Gradiente Violeta/Índigo para evocar Microbiología, Virus y Medicina */
+    background: linear-gradient(135deg, #2E0F38 0%, #662D8C 100%);
+    min-height: 100vh;
+    color: white;
+    font-family: 'Segoe UI', sans-serif;
+}
+
+.glass-panel {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-radius: 15px;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
+}
+
+.btn-topic {
+    background: rgba(255, 255, 255, 0.15);
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    color: white;
+    font-weight: 500;
+    transition: 0.3s;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 18px;
+    cursor: pointer;
+    text-shadow: 0 1px 2px rgba(0,0,0,0.1);
+}
+
+.btn-topic:hover {
+    background: rgba(255,255,255,0.3);
+    transform: translateY(-3px);
+    color: white;
+    box-shadow: 0 4px 15px rgba(238, 130, 238, 0.2); /* Brillo sutil violeta */
+}
+
+/* --- ESTILOS AGREGADOS PARA EL EXAMEN --- */
+.btn-exam {
+    background: rgba(255, 255, 255, 0.1); 
+    border: 2px solid rgba(224, 176, 255, 0.7); /* Lavanda */
+    font-weight: bold;
+    font-size: 1.2rem;
+    color: #fff;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+.btn-exam:hover {
+    background: rgba(224, 176, 255, 0.25);
+    box-shadow: 0 0 20px rgba(224, 176, 255, 0.4);
+    transform: scale(1.02);
+}
+
+.quiz-option {
+    display: block;
+    background: rgba(0,0,0,0.25);
+    padding: 10px 15px;
+    margin-bottom: 10px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: 0.2s;
+    border: 1px solid transparent;
+}
+.quiz-option:hover {
+    background: rgba(255,255,255,0.15);
+}
+.quiz-option input {
+    margin-right: 10px;
+}
+.correct-answer {
+    border: 2px solid #4ade80 !important; /* Verde */
+    background: rgba(74, 222, 128, 0.2) !important;
+}
+.wrong-answer {
+    border: 2px solid #ef4444 !important; /* Rojo */
+    background: rgba(239, 68, 68, 0.2) !important;
+}
+/* ---------------------------------------- */
+
+.breadcrumb-text {
+    font-size: 0.9rem;
+    opacity: 0.9;
+}
+
+/* Ajuste para imágenes dentro del contenido */
+#topic-body img {
+    max-height: 300px;
+    width: auto;
+    max-width: 100%;
+    object-fit: cover;
+    background: rgba(255,255,255,0.95);
+    padding: 5px;
+    border-radius: 8px;
+    margin-bottom: 1rem;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+}
+
+/* Estilo para listas y subtítulos en el contenido */
+#topic-body h5 {
+    color: #e0b0ff; /* Lavanda claro para resaltar sobre el fondo oscuro */
+    margin-top: 1.5rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    font-size: 1.1rem;
+}
+#topic-body ul {
+    list-style-type: none;
+    padding-left: 0;
+}
+#topic-body ul li {
+    background: rgba(0,0,0,0.25);
+    margin-bottom: 8px;
+    padding: 10px;
+    border-radius: 5px;
+    border-left: 4px solid #e0b0ff;
+}
+</style>
+</head>
+
+<body class="d-flex flex-column align-items-center py-4">
+
+<header class="container mb-4">
+  <div class="d-flex justify-content-between align-items-center glass-panel p-3">
+    <!-- Botón para volver atrás -->
+    <a href="Tercero_Bachillerato.html" class="btn btn-sm btn-outline-light rounded-pill px-3">
+       &larr; Trimestres
+    </a>
+
+    <span class="breadcrumb-text" id="breadcrumbs">Tercer Año > Segundo Trimestre</span>
+  </div>
+</header>
+
+<main class="container text-center" style="max-width:900px">
+
+<!-- VISTA DE MENÚ -->
+<div id="menu-view">
+  <h1 class="display-5 fw-bold mb-4">Microbiología y Salud</h1>
+  
+  <div class="row g-3">
+    <div class="col-md-6 col-lg-3"><div class="btn btn-topic" onclick="loadTopic(1)">Microbiología</div></div>
+    <div class="col-md-6 col-lg-3"><div class="btn btn-topic" onclick="loadTopic(2)">Virus y bacterias</div></div>
+    <div class="col-md-6 col-lg-3"><div class="btn btn-topic" onclick="loadTopic(3)">Hongos</div></div>
+    <div class="col-md-6 col-lg-3"><div class="btn btn-topic" onclick="loadTopic(4)">Protozoarios</div></div>
+
+    <div class="col-md-6 col-lg-3"><div class="btn btn-topic" onclick="loadTopic(5)">Enfermedades infecciosas</div></div>
+    <div class="col-md-6 col-lg-3"><div class="btn btn-topic" onclick="loadTopic(6)">Antibióticos</div></div>
+    <div class="col-md-6 col-lg-3"><div class="btn btn-topic" onclick="loadTopic(7)">Vacunas</div></div>
+    <div class="col-md-6 col-lg-3"><div class="btn btn-topic" onclick="loadTopic(8)">Sistema inmune</div></div>
+
+    <div class="col-md-6 col-lg-3 offset-lg-3"><div class="btn btn-topic" onclick="loadTopic(9)">Epidemiología</div></div>
+    <div class="col-md-6 col-lg-3"><div class="btn btn-topic" onclick="loadTopic(10)">Salud pública</div></div>
+  </div>
+
+  <!-- SECCIÓN DEL BOTÓN DE EXAMEN (Añadido) -->
+  <div class="row mt-4">
+      <div class="col-12">
+        <hr class="border-light opacity-50 my-2">
+        <button class="btn btn-topic btn-exam w-100 py-3" onclick="loadExam()">
+            📝 REALIZAR EXAMEN DE REPASO
+        </button>
+      </div>
+  </div>
+</div>
+
+<!-- VISTA DE CONTENIDO -->
+<div id="content-view" class="d-none glass-panel p-4 p-md-5 text-start">
+  <h2 id="topic-title" class="border-bottom pb-3 mb-3 display-6"></h2>
+  <div id="topic-body" class="fs-5 fw-light"></div>
+
+  <div class="text-center mt-5">
+    <button class="btn btn-outline-light rounded-pill px-5 py-2" onclick="goHome()">Volver al menú</button>
+  </div>
+</div>
+
+<!-- VISTA DE EXAMEN (Nueva) -->
+<div id="exam-view" class="d-none glass-panel p-4 p-md-5 text-start">
+    <h2 class="border-bottom pb-3 mb-4 display-6 text-center">Examen: Microbiología</h2>
+    
+    <div id="quiz-container">
+        <!-- Las preguntas se inyectan aquí con JS -->
+    </div>
+
+    <div id="quiz-result-area" class="text-center mt-4 d-none">
+        <h3 id="final-score" class="fw-bold display-4"></h3>
+        <p id="final-message" class="fs-5"></p>
+    </div>
+
+    <div class="text-center mt-5 d-flex justify-content-center gap-3">
+        <button id="btn-submit-exam" class="btn btn-light text-primary fw-bold rounded-pill px-5 py-2" onclick="checkExam()">Finalizar Examen</button>
+        <button class="btn btn-outline-light rounded-pill px-5 py-2" onclick="goHome()">Volver al menú</button>
+    </div>
+</div>
+
+</main>
+
+<script>
+// --- CONTENIDO ORIGINAL INTACTO ---
+const topics = {
+1:{
+  title:"Microbiología",
+  content:`
+  <div class="text-center"><img src="https://concepto.de/wp-content/uploads/2019/04/microbiologia-2-e1556317680514.jpg" class="img-fluid rounded mb-3" alt="Placa de Petri"></div>
+  <p>La microbiología es la rama de la biología que estudia los microorganismos, seres vivos tan pequeños que no pueden verse a simple vista y requieren un microscopio.</p>
+  
+  <h5>Importancia:</h5>
+  <ul>
+    <li><strong>Rol Ecológico:</strong> Son esenciales para la vida (ej. bacterias que fijan nitrógeno o descomponen materia).</li>
+    <li><strong>Industria:</strong> Se usan para crear alimentos (yogur, queso, pan) y medicamentos.</li>
+    <li><strong>Salud:</strong> Aunque algunos causan enfermedades (patógenos), la inmensa mayoría son inofensivos o beneficiosos (microbiota intestinal).</li>
+  </ul>`
+},
+2:{
+  title:"Virus y bacterias",
+  content:`
+  <div class="text-center"><img src="https://cuidateplus.marca.com/sites/default/files/styles/natural/public/cms/virus_y_bacterias_1.jpg.webp?itok=oWm8NLTE" class="img-fluid rounded mb-3" alt="Bacterias al microscopio"></div>
+  <p>Son los dos principales agentes microscópicos, pero son biológicamente muy diferentes.</p>
+
+  <h5>Diferencias Clave:</h5>
+  <ul>
+    <li><strong>Bacterias (Vivas):</strong> Son células procariotas (sin núcleo) completas. Pueden sobrevivir por sí mismas, alimentarse y reproducirse. Se tratan con <em>antibióticos</em>.</li>
+    <li><strong>Virus (No Vivos):</strong> No son células, sino material genético (ADN o ARN) envuelto en proteínas. Necesitan secuestrar una célula (huésped) para replicarse. Se previenen con <em>vacunas</em> y no les afectan los antibióticos.</li>
+  </ul>`
+},
+3:{
+  title:"Hongos",
+  content:`
+  <div class="text-center"><img src="https://upload.wikimedia.org/wikipedia/commons/f/fc/Fungi_collage.jpg" class="img-fluid rounded mb-3" alt="Hongo microscópico"></div>
+  <p>Pertenecen al Reino Fungi. Pueden ser microscópicos (levaduras, mohos) o macroscópicos (setas). Son eucariotas, lo que los hace más parecidos a los humanos que las bacterias.</p>
+  
+  <h5>Tipos de Interacción:</h5>
+  <ul>
+    <li><strong>Saprófitos:</strong> Se alimentan de materia muerta (descomponedores clave).</li>
+    <li><strong>Simbióticos:</strong> Viven en armonía con otros seres (ej. líquenes).</li>
+    <li><strong>Parásitos:</strong> Causan enfermedades llamadas micosis, como el pie de atleta o la candidiasis.</li>
+  </ul>`
+},
+4:{
+  title:"Protozoarios",
+  content:`
+  <div class="text-center"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRxfIbECRDvSm5dF-xZwbRWBGV0QXOTJr9x6Q&s" class="img-fluid rounded mb-3" alt="Ameba"></div>
+  <p>Son organismos eucariotas unicelulares, a menudo móviles y heterótrofos (cazan su comida). Viven principalmente en agua o ambientes húmedos.</p>
+  
+  <h5>Clasificación por Movimiento:</h5>
+  <ul>
+    <li><strong>Rizópodos (Amebas):</strong> Se mueven usando "falsos pies" (pseudópodos).</li>
+    <li><strong>Ciliados:</strong> Usan pelos cortos vibrantes (cilios) para moverse.</li>
+    <li><strong>Flagelados:</strong> Usan una "cola" larga (flagelo). Ej: <em>Trypanosoma</em> (Enfermedad del sueño).</li>
+    <li><strong>Esporozoos:</strong> Inmóviles y parásitos estrictos. Ej: <em>Plasmodium</em> (causante de la Malaria).</li>
+  </ul>`
+},
+5:{
+  title:"Enfermedades infecciosas",
+  content:`
+  <div class="text-center"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ7mRKK9gyUfy668k0NPMGO4nR6y8LurynEjA&s" class="img-fluid rounded mb-3" alt="Transmisión aérea"></div>
+  <p>Son trastornos causados por organismos (bacterias, virus, hongos o parásitos). Se diferencian de otras enfermedades porque son transmisibles.</p>
+
+  <h5>Vías de Transmisión:</h5>
+  <ul>
+    <li><strong>Contacto Directo:</strong> Piel con piel, fluidos corporales.</li>
+    <li><strong>Indirecto (Fómites):</strong> Tocar superficies contaminadas (manijas, mesas).</li>
+    <li><strong>Vectores:</strong> Insectos que transportan la enfermedad (mosquitos, garrapatas).</li>
+    <li><strong>Vía Aérea:</strong> Gotículas expulsadas al toser o estornudar.</li>
+  </ul>`
+},
+6:{
+  title:"Antibióticos",
+  content:`
+  <div class="text-center"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQYiPfEMWh34Mz3rmKMdf13CDlUU1xel29J9A&s" class="img-fluid rounded mb-3" alt="Alexander Fleming"></div>
+  <p>Sustancias químicas que matan o impiden el crecimiento de bacterias. El descubrimiento de la penicilina por Alexander Fleming en 1928 revolucionó la medicina.</p>
+  
+  <h5>El Problema de la Resistencia:</h5>
+  <p>El uso indebido y excesivo de antibióticos ha provocado que las bacterias evolucionen y se vuelvan inmunes a ellos ("superbacterias").</p>
+  <ul>
+    <li>Nunca automedicarse con antibióticos.</li>
+    <li>Siempre terminar el tratamiento completo prescrito, incluso si uno se siente mejor.</li>
+    <li>Los antibióticos <strong>NO</strong> curan la gripe ni el resfriado (causados por virus).</li>
+  </ul>`
+},
+7:{
+  title:"Vacunas",
+  content:`
+  <div class="text-center"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSwpkpP9XlsGK3hv2sfQri6r8ncDJrdIetuVA&s" class="img-fluid rounded mb-3" alt="Vacunación"></div>
+  <p>Preparados biológicos que enseñan al sistema inmune a reconocer y combatir un patógeno específico antes de enfermarse realmente. Son la herramienta de salud pública más eficaz de la historia.</p>
+  
+  <h5>¿Cómo funcionan?</h5>
+  <p>Introducen una versión debilitada, muerta o fragmentada del microbio (o instrucciones de ARNm). El cuerpo crea anticuerpos y células de memoria. Si el microbio real ataca después, el cuerpo ya sabe cómo destruirlo rápidamente.</p>
+  <p>Gracias a ellas se ha erradicado la viruela y controlado la polio y el sarampión.</p>`
+},
+8:{
+  title:"Sistema inmune",
+  content:`
+  <div class="text-center"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRIh8RJKJTwxXgD5bpr2imN2YlUUwdI_0kxNQ&s" class="img-fluid rounded mb-3" alt="Sistema inmune"></div>
+  <p>Es la defensa natural del cuerpo contra las infecciones. Es una red compleja de células, tejidos y órganos.</p>
+  
+  <h5>Líneas de Defensa:</h5>
+  <ul>
+    <li><strong>Innata (Barreras):</strong> Piel, mucosas, ácido estomacal y fiebre. Es la primera respuesta, rápida pero inespecífica.</li>
+    <li><strong>Adquirida (Específica):</strong> Linfocitos T y B.
+      <br>- <em>Linfocitos B:</em> Producen anticuerpos ("misiles" teledirigidos).
+      <br>- <em>Linfocitos T:</em> Destruyen células infectadas y coordinan el ataque.</li>
+  </ul>`
+},
+9:{
+  title:"Epidemiología",
+  content:`
+  <div class="text-center"><img src="https://www.paho.org/sites/default/files/styles/max_1500x1500/public/2020-07/epi-basica-respuesta-covid-19.jpg?itok=qiS34F_S" class="img-fluid rounded mb-3" alt="Gráfico epidemiológico"></div>
+  <p>Es el estudio de la distribución, frecuencia y determinantes de las enfermedades en las poblaciones humanas. Es la ciencia base de la salud pública.</p>
+  
+  <h5>Términos Clave:</h5>
+  <ul>
+    <li><strong>Endemia:</strong> Presencia constante de una enfermedad en una zona (ej. Malaria en zonas tropicales).</li>
+    <li><strong>Epidemia:</strong> Aumento repentino e inesperado de casos en una región.</li>
+    <li><strong>Pandemia:</strong> Epidemia que se ha extendido por varios países o continentes, afectando a gran número de personas.</li>
+  </ul>`
+},
+10:{
+  title:"Salud pública",
+  content:`
+  <div class="text-center"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTZTMaKQl0L2iaC1gC40AVPXqa-_JaV38i-yg&s" class="img-fluid rounded mb-3" alt="Lavado de manos"></div>
+  <p>Es el conjunto de actividades organizadas por las administraciones públicas para prevenir la enfermedad, proteger y promover la salud de las personas.</p>
+  
+  <h5>Pilares Fundamentales:</h5>
+  <ul>
+    <li><strong>Saneamiento:</strong> Acceso a agua potable y gestión de residuos para evitar el cólera y disentería.</li>
+    <li><strong>Higiene:</strong> Campañas de lavado de manos e higiene alimentaria.</li>
+    <li><strong>Prevención:</strong> Programas de vacunación, control de vectores (mosquitos) y educación sexual.</li>
+    <li><strong>Vigilancia:</strong> Detectar brotes a tiempo para frenar su expansión.</li>
+  </ul>`
+}
+};
+
+// --- DATOS DEL EXAMEN (MICROBIOLOGÍA) ---
+const questions = [
+    {
+        q: "¿Cuál es la diferencia biológica principal entre un virus y una bacteria?",
+        a: ["El tamaño", "Las bacterias son células vivas, los virus no", "Los virus tienen patas", "No hay diferencia"],
+        correct: 1
+    },
+    {
+        q: "¿Para qué tipo de infecciones son efectivos los antibióticos?",
+        a: ["Infecciones virales (Gripe)", "Infecciones bacterianas", "Infecciones por hongos", "Dolor de cabeza"],
+        correct: 1
+    },
+    {
+        q: "¿Qué organismo transmite la malaria?",
+        a: ["Un virus en el aire", "Una bacteria en el agua", "Un protozoario (Plasmodium)", "Un hongo en la piel"],
+        correct: 2
+    },
+    {
+        q: "¿Cuál es la función principal de una vacuna?",
+        a: ["Curar la enfermedad cuando ya la tienes", "Matar bacterias", "Enseñar al sistema inmune a prevenir enfermedades", "Bajar la fiebre"],
+        correct: 2
+    },
+    {
+        q: "¿Qué tipo de microorganismo causa la micosis (pie de atleta)?",
+        a: ["Virus", "Bacteria", "Hongo", "Alga"],
+        correct: 2
+    }
+];
+
+// --- FUNCIONES DE NAVEGACIÓN ---
+
+function loadTopic(id){
+  document.getElementById("menu-view").classList.add("d-none");
+  document.getElementById("exam-view").classList.add("d-none");
+  document.getElementById("content-view").classList.remove("d-none");
+  
+  document.getElementById("topic-title").innerText=topics[id].title;
+  document.getElementById("topic-body").innerHTML=topics[id].content;
+  document.getElementById("breadcrumbs").innerText="Tercer Año > Segundo Trimestre > "+topics[id].title;
+  window.scrollTo(0, 0);
+}
+
+function goHome(){
+  document.getElementById("content-view").classList.add("d-none");
+  document.getElementById("exam-view").classList.add("d-none");
+  document.getElementById("menu-view").classList.remove("d-none");
+  document.getElementById("breadcrumbs").innerText="Tercer Año > Segundo Trimestre";
+  
+  // Resetear examen visualmente
+  document.getElementById("btn-submit-exam").style.display = "inline-block";
+  document.getElementById("quiz-result-area").classList.add("d-none");
+}
+
+// --- LÓGICA DEL EXAMEN ---
+
+function loadExam() {
+    document.getElementById("menu-view").classList.add("d-none");
+    document.getElementById("exam-view").classList.remove("d-none");
+    document.getElementById("breadcrumbs").innerText="Tercer Año > Segundo Trimestre > Examen";
+    
+    // Generar el HTML de las preguntas
+    const container = document.getElementById("quiz-container");
+    container.innerHTML = ""; 
+    
+    questions.forEach((item, index) => {
+        let optionsHTML = "";
+        item.a.forEach((opt, optIndex) => {
+            optionsHTML += `
+                <label class="quiz-option" id="q${index}_opt${optIndex}">
+                    <input type="radio" name="question${index}" value="${optIndex}">
+                    ${opt}
+                </label>
+            `;
+        });
+
+        const questionHTML = `
+            <div class="mb-4">
+                <h5 class="fw-bold mb-3" style="color:#e0b0ff;">${index + 1}. ${item.q}</h5>
+                <div class="ms-2">
+                    ${optionsHTML}
+                </div>
+            </div>
+        `;
+        container.innerHTML += questionHTML;
+    });
+
+    document.getElementById("btn-submit-exam").style.display = "inline-block";
+    document.getElementById("quiz-result-area").classList.add("d-none");
+    window.scrollTo(0, 0);
+}
+
+function checkExam() {
+    let score = 0;
+    
+    questions.forEach((item, index) => {
+        const selected = document.querySelector(`input[name="question${index}"]:checked`);
+        const correctLabel = document.getElementById(`q${index}_opt${item.correct}`);
+        
+        if (selected) {
+            const val = parseInt(selected.value);
+            if (val === item.correct) {
+                score++;
+                correctLabel.classList.add("correct-answer");
+            } else {
+                document.getElementById(`q${index}_opt${val}`).classList.add("wrong-answer");
+                correctLabel.classList.add("correct-answer");
+            }
+        } else {
+            correctLabel.classList.add("correct-answer");
+        }
+    });
+
+    const finalScore = (score / questions.length) * 10;
+    
+    const resultArea = document.getElementById("quiz-result-area");
+    const scoreTitle = document.getElementById("final-score");
+    const message = document.getElementById("final-message");
+    
+    resultArea.classList.remove("d-none");
+    scoreTitle.innerText = finalScore + "/10";
+    
+    if(finalScore === 10) message.innerText = "¡Excelente! Dominas la microbiología.";
+    else if(finalScore >= 7) message.innerText = "¡Muy bien! Sabes cómo proteger tu salud.";
+    else message.innerText = "Recuerda: ¡los antibióticos no matan virus!";
+
+    document.getElementById("btn-submit-exam").style.display = "none";
+    resultArea.scrollIntoView({behavior: "smooth"});
+}
+</script>
+
+</body>
+</html>

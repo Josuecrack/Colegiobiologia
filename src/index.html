@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Biología - Web Animada</title>
+    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+
+    <style>
+        /* --- Estilos Base (igual que antes) --- */
+        .hero-section {
+            background: linear-gradient(135deg, #4e54c8, #8f94fb);
+            min-height: 100vh;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-title {
+            font-weight: 800;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+        }
+
+        .btn-iniciar {
+            background-color: #2ecc71;
+            border: none;
+            padding: 15px 50px;
+            font-weight: 600;
+            box-shadow: 0 4px 15px rgba(46, 204, 113, 0.4);
+            transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s;
+        }
+
+        .btn-iniciar:hover {
+            background-color: #27ae60;
+            transform: translateY(-5px) scale(1.05); /* Un poco más de énfasis al pasar el mouse */
+            box-shadow: 0 10px 25px rgba(46, 204, 113, 0.6);
+        }
+
+        /* --- NUEVAS ANIMACIONES CSS (Para los iconos) --- */
+
+        /* Definimos la animación de "flotar" */
+        @keyframes flotar {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); } /* Se mueven 20px hacia arriba */
+            100% { transform: translateY(0px); }
+        }
+
+        .floating-icon {
+            position: absolute;
+            opacity: 0.2; /* Un poco más sutiles */
+            font-size: 2.5rem;
+            /* Aplicamos la animación 'flotar' de forma infinita */
+            animation: flotar infinite ease-in-out;
+        }
+
+        /* Posiciones y tiempos diferentes para que no se muevan al unísono */
+        .icon-1 { top: 10%; left: 10%; animation-duration: 4s; } 
+        .icon-2 { top: 15%; right: 15%; animation-duration: 5s; animation-delay: 1s; }
+        .icon-3 { bottom: 20%; left: 5%; animation-duration: 4.5s; animation-delay: 0.5s;}
+        .icon-4 { bottom: 10%; right: 10%; animation-duration: 6s; animation-delay: 1.5s;}
+        .icon-5 { bottom: 30%; right: 20%; animation-duration: 5.5s; animation-delay: 2s;}
+
+    </style>
+</head>
+<body>
+
+    <section class="hero-section d-flex align-items-center text-center">
+        <i class="bi bi-shield-fill floating-icon icon-1"></i>
+        <i class="bi bi-bullseye floating-icon icon-2"></i>
+        <i class="bi bi-diagram-3-fill floating-icon icon-3"></i>
+        <i class="bi bi-mic-fill floating-icon icon-4"></i>
+        <i class="bi bi-vinyl-fill floating-icon icon-5"></i>
+
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-8">
+                    <h1 class="display-1 hero-title mb-3 animate__animated animate__zoomIn">BIOLOGÍA</h1>
+                    
+                    <p class="lead fs-3 mb-5 animate__animated animate__fadeInUp animate__delay-1s">
+                        Explora, aprende y descubre el mundo de la vida
+                    </p>
+                    
+                    <a href="bachillerato.html" class="btn btn-success btn-lg rounded-pill btn-iniciar animate__animated animate__bounceIn animate__delay-2s">
+                        INICIAR
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    
+</body>
+</html>

@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tercer Trimestre - Biología (3º Año)</title>
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+<style>
+body {
+    /* Gradiente Azul Oscuro/Cian para evocar Tecnología y Futuro */
+    background: linear-gradient(135deg, #0f2027 0%, #203a43 50%, #2c5364 100%);
+    min-height: 100vh;
+    color: white;
+    font-family: 'Segoe UI', sans-serif;
+}
+
+.glass-panel {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border-radius: 15px;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.5);
+}
+
+.btn-topic {
+    background: rgba(0, 255, 255, 0.05); /* Cian muy sutil */
+    border: 1px solid rgba(0, 255, 255, 0.2);
+    color: #e0f7fa;
+    font-weight: 500;
+    transition: 0.3s;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 18px;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+}
+
+.btn-topic:hover {
+    background: rgba(0, 255, 255, 0.15);
+    transform: translateY(-3px);
+    color: #00e5ff; /* Cian brillante al hover */
+    box-shadow: 0 0 15px rgba(0, 229, 255, 0.3);
+    border-color: rgba(0, 255, 255, 0.5);
+}
+
+/* --- ESTILOS AGREGADOS PARA EL EXAMEN --- */
+.btn-exam {
+    background: rgba(0, 255, 255, 0.05); 
+    border: 2px solid rgba(0, 229, 255, 0.6); /* Borde Cian */
+    font-weight: bold;
+    font-size: 1.2rem;
+    color: #fff;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+.btn-exam:hover {
+    background: rgba(0, 229, 255, 0.2);
+    box-shadow: 0 0 20px rgba(0, 229, 255, 0.4);
+    transform: scale(1.02);
+    color: #e0f7fa;
+}
+
+.quiz-option {
+    display: block;
+    background: rgba(0, 20, 40, 0.4);
+    padding: 10px 15px;
+    margin-bottom: 10px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: 0.2s;
+    border: 1px solid transparent;
+}
+.quiz-option:hover {
+    background: rgba(0, 255, 255, 0.1);
+    border-color: rgba(0, 255, 255, 0.3);
+}
+.quiz-option input {
+    margin-right: 10px;
+}
+.correct-answer {
+    border: 2px solid #4ade80 !important; /* Verde */
+    background: rgba(74, 222, 128, 0.2) !important;
+}
+.wrong-answer {
+    border: 2px solid #ef4444 !important; /* Rojo */
+    background: rgba(239, 68, 68, 0.2) !important;
+}
+/* ---------------------------------------- */
+
+.breadcrumb-text {
+    font-size: 0.9rem;
+    opacity: 0.8;
+}
+
+/* Ajuste para imágenes dentro del contenido */
+#topic-body img {
+    max-height: 300px;
+    width: auto;
+    max-width: 100%;
+    object-fit: cover;
+    background: rgba(255,255,255,0.95);
+    padding: 5px;
+    border-radius: 8px;
+    margin-bottom: 1rem;
+    box-shadow: 0 0 20px rgba(0, 229, 255, 0.15);
+}
+
+/* Estilo para listas y subtítulos en el contenido */
+#topic-body h5 {
+    color: #00e5ff; /* Cian neón */
+    margin-top: 1.5rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    font-size: 1.1rem;
+    letter-spacing: 1px;
+}
+#topic-body ul {
+    list-style-type: none;
+    padding-left: 0;
+}
+#topic-body ul li {
+    background: rgba(0, 20, 40, 0.4);
+    margin-bottom: 8px;
+    padding: 10px;
+    border-radius: 5px;
+    border-left: 4px solid #00e5ff;
+}
+</style>
+</head>
+
+<body class="d-flex flex-column align-items-center py-4">
+
+<header class="container mb-4">
+  <div class="d-flex justify-content-between align-items-center glass-panel p-3">
+    <!-- Botón para volver atrás -->
+    <a href="Tercero_Bachillerato.html" class="btn btn-sm btn-outline-info rounded-pill px-3 text-white">
+       &larr; Trimestres
+    </a>
+
+    <span class="breadcrumb-text" id="breadcrumbs">Tercer Año > Tercer Trimestre</span>
+  </div>
+</header>
+
+<main class="container text-center" style="max-width:900px">
+
+<!-- VISTA DE MENÚ -->
+<div id="menu-view">
+  <h1 class="display-5 fw-bold mb-4" style="color: #b2ebf2;">Biotecnología y Futuro</h1>
+  
+  <div class="row g-3">
+    <div class="col-md-6 col-lg-3"><div class="btn btn-topic" onclick="loadTopic(1)">Biotecnología aplicada</div></div>
+    <div class="col-md-6 col-lg-3"><div class="btn btn-topic" onclick="loadTopic(2)">Medicina molecular</div></div>
+    <div class="col-md-6 col-lg-3"><div class="btn btn-topic" onclick="loadTopic(3)">Agricultura biotecnológica</div></div>
+    <div class="col-md-6 col-lg-3"><div class="btn btn-topic" onclick="loadTopic(4)">Bioinformática</div></div>
+
+    <div class="col-md-6 col-lg-3"><div class="btn btn-topic" onclick="loadTopic(5)">Nanotecnología</div></div>
+    <div class="col-md-6 col-lg-3"><div class="btn btn-topic" onclick="loadTopic(6)">Biomedicación (Biorremediación)</div></div>
+    <div class="col-md-6 col-lg-3"><div class="btn btn-topic" onclick="loadTopic(7)">Energía renovable</div></div>
+    <div class="col-md-6 col-lg-3"><div class="btn btn-topic" onclick="loadTopic(8)">Biomateriales</div></div>
+
+    <div class="col-md-6 col-lg-3 offset-lg-3"><div class="btn btn-topic" onclick="loadTopic(9)">Investigaciones científicas</div></div>
+    <div class="col-md-6 col-lg-3"><div class="btn btn-topic" onclick="loadTopic(10)">Futuros de la biología</div></div>
+  </div>
+
+  <!-- SECCIÓN DEL BOTÓN DE EXAMEN (Añadido) -->
+  <div class="row mt-4">
+      <div class="col-12">
+        <hr class="border-light opacity-50 my-2">
+        <button class="btn btn-topic btn-exam w-100 py-3" onclick="loadExam()">
+            📝 REALIZAR EXAMEN DE REPASO
+        </button>
+      </div>
+  </div>
+</div>
+
+<!-- VISTA DE CONTENIDO -->
+<div id="content-view" class="d-none glass-panel p-4 p-md-5 text-start">
+  <h2 id="topic-title" class="border-bottom pb-3 mb-3 display-6" style="color: #00e5ff;"></h2>
+  <div id="topic-body" class="fs-5 fw-light"></div>
+
+  <div class="text-center mt-5">
+    <button class="btn btn-outline-info rounded-pill px-5 py-2 text-white" onclick="goHome()">Volver al menú</button>
+  </div>
+</div>
+
+<!-- VISTA DE EXAMEN (Nueva) -->
+<div id="exam-view" class="d-none glass-panel p-4 p-md-5 text-start">
+    <h2 class="border-bottom pb-3 mb-4 display-6 text-center" style="color: #00e5ff;">Examen: Biotecnología</h2>
+    
+    <div id="quiz-container">
+        <!-- Las preguntas se inyectan aquí con JS -->
+    </div>
+
+    <div id="quiz-result-area" class="text-center mt-4 d-none">
+        <h3 id="final-score" class="fw-bold display-4"></h3>
+        <p id="final-message" class="fs-5"></p>
+    </div>
+
+    <div class="text-center mt-5 d-flex justify-content-center gap-3">
+        <button id="btn-submit-exam" class="btn btn-info text-dark fw-bold rounded-pill px-5 py-2" onclick="checkExam()">Finalizar Examen</button>
+        <button class="btn btn-outline-info rounded-pill px-5 py-2 text-white" onclick="goHome()">Volver al menú</button>
+    </div>
+</div>
+
+</main>
+
+<script>
+// --- CONTENIDO ORIGINAL INTACTO ---
+const topics = {
+1:{
+  title:"Biotecnología aplicada",
+  content:`
+  <div class="text-center"><img src="https://www.bbva.com/wp-content/uploads/2021/12/BBVA-biotecnologia_apertura.jpg" class="img-fluid rounded mb-3" alt="Laboratorio biotecnológico"></div>
+  <p>Es el uso de organismos vivos o sus derivados para crear o modificar productos con fines específicos. Ya no observamos la biología, la <em>programamos</em>.</p>
+  
+  <h5>Sectores Principales:</h5>
+  <ul>
+    <li><strong>Industrial:</strong> Producción de enzimas, bioplásticos y fermentación avanzada.</li>
+    <li><strong>Sanitaria:</strong> Desarrollo de terapias avanzadas y diagnóstico.</li>
+    <li><strong>Ambiental:</strong> Gestión de residuos y control de contaminación.</li>
+  </ul>
+  <p>La biotecnología moderna utiliza herramientas como la Ingeniería Genética para saltar las barreras de la evolución natural.</p>`
+},
+2:{
+  title:"Medicina molecular",
+  content:`
+  <div class="text-center"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f0/DNA_Overview.png/640px-DNA_Overview.png" class="img-fluid rounded mb-3" alt="ADN y medicina"></div>
+  <p>Una rama de la medicina que utiliza técnicas físicas, químicas y biológicas para estudiar y tratar enfermedades a nivel molecular (genes y proteínas).</p>
+
+  <h5>Avances Clave:</h5>
+  <ul>
+    <li><strong>Diagnóstico Genético:</strong> Detectar predisposición a enfermedades (como el cáncer de mama BRCA1) antes de que aparezcan síntomas.</li>
+    <li><strong>Farmacogenómica:</strong> Crear medicamentos personalizados según el ADN del paciente ("medicina a la carta"), reduciendo efectos secundarios.</li>
+    <li><strong>Terapia Génica:</strong> Sustituir genes defectuosos por copias sanas para curar enfermedades hereditarias.</li>
+  </ul>`
+},
+3:{
+  title:"Agricultura biotecnológica",
+  content:`
+  <div class="text-center"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcShnUl2Flq9cwkKPeXBe9KqM0jvzJkOakeXXw&s" class="img-fluid rounded mb-3" alt="Cultivos transgénicos"></div>
+  <p>Aplicación de la tecnología para mejorar cultivos y ganado, superando las limitaciones de la cría tradicional.</p>
+  
+  <h5>Organismos Genéticamente Modificados (OGM):</h5>
+  <ul>
+    <li><strong>Resistencia:</strong> Plantas que producen su propio insecticida (Maíz Bt) o resisten sequías extremas.</li>
+    <li><strong>Biofortificación:</strong> Alimentos con más nutrientes, como el "Arroz Dorado" enriquecido con vitamina A para combatir la ceguera infantil.</li>
+    <li><strong>Edición CRISPR:</strong> Permite modificar cultivos sin insertar genes de otras especies, siendo más preciso que los transgénicos clásicos.</li>
+  </ul>`
+},
+4:{
+  title:"Bioinformática",
+  content:`
+  <div class="text-center"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS-FIIkQOVeTTpWhpOI4z664PMemCdOj-HaKA&s" class="img-fluid rounded mb-3" alt="Modelado de proteínas"></div>
+  <p>La fusión entre la biología y la informática. Es esencial para manejar la inmensa cantidad de "Big Data" biológico que generamos hoy en día.</p>
+  
+  <h5>Aplicaciones:</h5>
+  <ul>
+    <li><strong>Secuenciación:</strong> Ordenar y analizar los miles de millones de letras de un genoma humano en horas en lugar de años.</li>
+    <li><strong>Diseño de Fármacos:</strong> Simular cómo una molécula interactuará con un virus en una computadora antes de probarla en un laboratorio (in silico).</li>
+    <li><strong>Filogenia:</strong> Comparar genomas completos para trazar el árbol evolutivo de la vida con precisión matemática.</li>
+  </ul>`
+},
+5:{
+  title:"Nanotecnología",
+  content:`
+  <div class="text-center"><img src="https://concepto.de/wp-content/uploads/2019/12/nanotecnologia-e1576098823394.jpg" class="img-fluid rounded mb-3" alt="Nanotubos y Fullereno"></div>
+  <p>La manipulación de la materia a escala atómica y molecular (nanómetros). En biología, se conoce como <strong>Nanobiotecnología</strong>.</p>
+
+  <h5>La Revolución Invisible:</h5>
+  <ul>
+    <li><strong>Drug Delivery (Entrega de fármacos):</strong> Nanopartículas que viajan por la sangre y liberan el medicamento <em>solo</em> al detectar un tumor, sin dañar células sanas (como la quimioterapia dirigida).</li>
+    <li><strong>Nanobiosensores:</strong> Dispositivos minúsculos capaces de detectar una sola molécula de un virus en la sangre para diagnósticos ultra-precoces.</li>
+  </ul>`
+},
+6:{
+  title:"Biomedicación (Biorremediación)",
+  content:`
+  <div class="text-center"><img src="https://miro.medium.com/1*8qKzswOqAA0kWAkaoUdfAg.jpeg" class="img-fluid rounded mb-3" alt="Limpieza ambiental"></div>
+  <p><em>(Nota: A menudo referida como Biorremediación en contextos ambientales).</em> Es el uso de microorganismos, hongos o plantas para retornar un medio ambiente alterado por contaminantes a su condición natural.</p>
+  
+  <h5>Los "Limpiadores" de la Naturaleza:</h5>
+  <ul>
+    <li><strong>Bacterias comepetróleo:</strong> Se usan en derrames marinos (mareas negras) para degradar hidrocarburos.</li>
+    <li><strong>Fitorremediación:</strong> Uso de plantas capaces de absorber metales pesados del suelo en zonas mineras.</li>
+    <li><strong>Biofiltros:</strong> Uso de microorganismos para purificar el aire o el agua de residuos industriales antes de ser liberados.</li>
+  </ul>`
+},
+7:{
+  title:"Energía renovable",
+  content:`
+  <div class="text-center"><img src="https://www.bbva.com/wp-content/uploads/2021/03/energi%CC%81a_renovable_apertura-paneles-sostenible-panel-solar-eolica-molinos-medioambiente.jpg" class="img-fluid rounded mb-3" alt="Biocombustibles de algas"></div>
+  <p>La biología ofrece alternativas sostenibles a los combustibles fósiles mediante la bioenergía.</p>
+  
+  <h5>Fuentes Biológicas:</h5>
+  <ul>
+    <li><strong>Biocombustibles de 1ª Generación:</strong> Etanol de maíz o caña de azúcar (tiene el problema de competir con la comida).</li>
+    <li><strong>Biocombustibles de 3ª Generación (Algas):</strong> Cultivo de microalgas que producen aceites. No ocupan tierras agrícolas y absorben mucho CO2.</li>
+    <li><strong>Biogás:</strong> Captura de gas metano producido por la descomposición de basura orgánica o estiércol para generar electricidad.</li>
+  </ul>`
+},
+8:{
+  title:"Biomateriales",
+  content:`
+  <div class="text-center"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTxGiKpw4a8-MePmG2ZId3FxA0Dc3liWp0fcA&s" class="img-fluid rounded mb-3" alt="Prótesis biomaterial"></div>
+  <p>Materiales diseñados para interactuar con sistemas biológicos con fines médicos, ya sea terapéuticos o de diagnóstico.</p>
+  
+  <h5>Tipos:</h5>
+  <ul>
+    <li><strong>Bioinertes:</strong> Como el titanio, que el cuerpo acepta sin reaccionar (prótesis de cadera).</li>
+    <li><strong>Bioactivos:</strong> Estimulan una respuesta biológica, como cristales que ayudan a regenerar hueso.</li>
+    <li><strong>Biodegradables:</strong> Suturas (puntos) que se disuelven solas o andamios para ingeniería de tejidos que desaparecen a medida que el cuerpo regenera el órgano.</li>
+  </ul>`
+},
+9:{
+  title:"Investigaciones científicas",
+  content:`
+  <div class="text-center"><img src="https://www.questionpro.com/blog/wp-content/uploads/2019/12/Portada-investigacion-cientifica.jpg" class="img-fluid rounded mb-3" alt="Investigación"></div>
+  <p>El proceso sistemático para descubrir nuevo conocimiento. En biología actual, es interdisciplinario y colaborativo.</p>
+  
+  <h5>Tendencias Actuales:</h5>
+  <ul>
+    <li><strong>Ciencia Abierta (Open Science):</strong> Compartir datos genómicos públicamente para que científicos de todo el mundo colaboren (clave en la pandemia COVID-19).</li>
+    <li><strong>Biología de Sistemas:</strong> Dejar de estudiar genes aislados y empezar a usar modelos matemáticos para entender la célula como un todo complejo e interconectado.</li>
+  </ul>`
+},
+10:{
+  title:"Futuros de la biología",
+  content:`
+  <div class="text-center"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQqVmZAMaqQXGn1F1uuIvwODPMtpfO7HlmoSg&s" class="img-fluid rounded mb-3" alt="Biología sintética"></div>
+  <p>¿Hacia dónde vamos? La biología del siglo XXI plantea posibilidades que rozan la ciencia ficción.</p>
+  
+  <h5>Horizontes:</h5>
+  <ul>
+    <li><strong>Biología Sintética:</strong> Ya no solo "leemos" o "editamos" ADN, sino que <em>escribimos</em> ADN desde cero para crear formas de vida artificiales o bacterias con funciones nuevas.</li>
+    <li><strong>Xenotrasplantes:</strong> Modificar cerdos genéticamente para que sus órganos puedan trasplantarse a humanos sin rechazo.</li>
+    <li><strong>Clonación de especies extintas:</strong> Proyectos teóricos para "revivir" al mamut lanudo usando elefantes asiáticos como base.</li>
+    <li><strong>Ética:</strong> El gran debate sobre los límites de la mejora humana (transhumanismo).</li>
+  </ul>`
+}
+};
+
+// --- DATOS DEL EXAMEN (BIOTECNOLOGÍA) ---
+const questions = [
+    {
+        q: "¿Qué técnica permite editar el ADN de forma precisa como un procesador de texto?",
+        a: ["PCR", "CRISPR", "Pasteurización", "Fermentación"],
+        correct: 1
+    },
+    {
+        q: "¿Cuál es el objetivo principal de la Biorremediación?",
+        a: ["Crear nuevas medicinas", "Limpiar el medio ambiente usando organismos", "Modificar alimentos", "Clonar animales"],
+        correct: 1
+    },
+    {
+        q: "¿Qué ventaja tienen los biocombustibles de algas (3ª generación)?",
+        a: ["No ocupan tierras de cultivo alimentario", "Son más baratos que el agua", "Se hacen con petróleo", "No sirven para motores"],
+        correct: 0
+    },
+    {
+        q: "¿Qué estudia la Bioinformática?",
+        a: ["Robots biológicos", "El análisis computacional de datos biológicos masivos", "La vida en otros planetas", "El hardware de computadoras"],
+        correct: 1
+    },
+    {
+        q: "¿En qué consiste la Terapia Génica?",
+        a: ["Tomar aspirina", "Reemplazar un gen defectuoso por uno sano", "Hacer ejercicio físico", "Comer alimentos transgénicos"],
+        correct: 1
+    }
+];
+
+// --- FUNCIONES DE NAVEGACIÓN ---
+
+function loadTopic(id){
+  document.getElementById("menu-view").classList.add("d-none");
+  document.getElementById("exam-view").classList.add("d-none");
+  document.getElementById("content-view").classList.remove("d-none");
+  
+  document.getElementById("topic-title").innerText=topics[id].title;
+  document.getElementById("topic-body").innerHTML=topics[id].content;
+  document.getElementById("breadcrumbs").innerText="Tercer Año > Tercer Trimestre > "+topics[id].title;
+  window.scrollTo(0, 0);
+}
+
+function goHome(){
+  document.getElementById("content-view").classList.add("d-none");
+  document.getElementById("exam-view").classList.add("d-none");
+  document.getElementById("menu-view").classList.remove("d-none");
+  document.getElementById("breadcrumbs").innerText="Tercer Año > Tercer Trimestre";
+  
+  // Resetear examen visualmente
+  document.getElementById("btn-submit-exam").style.display = "inline-block";
+  document.getElementById("quiz-result-area").classList.add("d-none");
+}
+
+// --- LÓGICA DEL EXAMEN ---
+
+function loadExam() {
+    document.getElementById("menu-view").classList.add("d-none");
+    document.getElementById("exam-view").classList.remove("d-none");
+    document.getElementById("breadcrumbs").innerText="Tercer Año > Tercer Trimestre > Examen";
+    
+    // Generar el HTML de las preguntas
+    const container = document.getElementById("quiz-container");
+    container.innerHTML = ""; 
+    
+    questions.forEach((item, index) => {
+        let optionsHTML = "";
+        item.a.forEach((opt, optIndex) => {
+            optionsHTML += `
+                <label class="quiz-option" id="q${index}_opt${optIndex}">
+                    <input type="radio" name="question${index}" value="${optIndex}">
+                    ${opt}
+                </label>
+            `;
+        });
+
+        const questionHTML = `
+            <div class="mb-4">
+                <h5 class="fw-bold mb-3" style="color:#00e5ff;">${index + 1}. ${item.q}</h5>
+                <div class="ms-2">
+                    ${optionsHTML}
+                </div>
+            </div>
+        `;
+        container.innerHTML += questionHTML;
+    });
+
+    document.getElementById("btn-submit-exam").style.display = "inline-block";
+    document.getElementById("quiz-result-area").classList.add("d-none");
+    window.scrollTo(0, 0);
+}
+
+function checkExam() {
+    let score = 0;
+    
+    questions.forEach((item, index) => {
+        const selected = document.querySelector(`input[name="question${index}"]:checked`);
+        const correctLabel = document.getElementById(`q${index}_opt${item.correct}`);
+        
+        if (selected) {
+            const val = parseInt(selected.value);
+            if (val === item.correct) {
+                score++;
+                correctLabel.classList.add("correct-answer");
+            } else {
+                document.getElementById(`q${index}_opt${val}`).classList.add("wrong-answer");
+                correctLabel.classList.add("correct-answer");
+            }
+        } else {
+            correctLabel.classList.add("correct-answer");
+        }
+    });
+
+    const finalScore = (score / questions.length) * 10;
+    
+    const resultArea = document.getElementById("quiz-result-area");
+    const scoreTitle = document.getElementById("final-score");
+    const message = document.getElementById("final-message");
+    
+    resultArea.classList.remove("d-none");
+    scoreTitle.innerText = finalScore + "/10";
+    
+    if(finalScore === 10) message.innerText = "¡Increíble! Estás listo para el futuro.";
+    else if(finalScore >= 7) message.innerText = "¡Muy bien! Entiendes la biotecnología.";
+    else message.innerText = "Repasa los conceptos de ingeniería genética.";
+
+    document.getElementById("btn-submit-exam").style.display = "none";
+    resultArea.scrollIntoView({behavior: "smooth"});
+}
+</script>
+
+</body>
+</html>

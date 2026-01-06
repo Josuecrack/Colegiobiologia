@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Primer Trimestre - Biología (2º Año)</title>
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+<style>
+body {
+    /* Gradiente Azul/Violeta para evocar Genética y Tecnología */
+    background: linear-gradient(135deg, #4b6cb7 0%, #182848 100%);
+    min-height: 100vh;
+    color: white;
+    font-family: 'Segoe UI', sans-serif;
+}
+
+.glass-panel {
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(8px);
+    border-radius: 15px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.btn-topic {
+    background: rgba(255, 255, 255, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    color: white;
+    font-weight: 500;
+    transition: 0.3s;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 18px;
+    cursor: pointer;
+}
+
+.btn-topic:hover {
+    background: rgba(255,255,255,0.35);
+    transform: translateY(-3px);
+    color: white;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+}
+
+/* Estilo especial para el botón de examen */
+.btn-exam {
+    background: rgba(255, 215, 0, 0.25); /* Dorado translúcido para contrastar con azul */
+    border: 2px solid rgba(255, 215, 0, 0.6);
+    font-weight: bold;
+    font-size: 1.2rem;
+    color: #fff;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+.btn-exam:hover {
+    background: rgba(255, 215, 0, 0.45);
+    box-shadow: 0 0 20px rgba(255, 215, 0, 0.6);
+    transform: scale(1.02);
+}
+
+.breadcrumb-text {
+    font-size: 0.9rem;
+    opacity: 0.9;
+}
+
+/* Ajuste para imágenes dentro del contenido */
+#topic-body img {
+    max-height: 300px;
+    object-fit: contain;
+    background: rgba(255,255,255,0.9);
+    padding: 10px;
+    border-radius: 8px;
+}
+
+/* Estilo para listas y subtítulos en el contenido */
+#topic-body h5 {
+    color: #a3c9ff;
+    margin-top: 1.5rem;
+    font-weight: 600;
+}
+#topic-body ul {
+    list-style-type: none;
+    padding-left: 0;
+}
+#topic-body ul li {
+    background: rgba(0,0,0,0.2);
+    margin-bottom: 8px;
+    padding: 10px;
+    border-radius: 5px;
+    border-left: 4px solid #a3c9ff;
+}
+
+/* Estilos para el Examen */
+.quiz-option {
+    display: block;
+    background: rgba(0,0,0,0.2);
+    padding: 10px 15px;
+    margin-bottom: 10px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: 0.2s;
+    border: 1px solid transparent;
+}
+.quiz-option:hover {
+    background: rgba(255,255,255,0.1);
+}
+.quiz-option input {
+    margin-right: 10px;
+}
+.correct-answer {
+    border: 2px solid #4ade80 !important; /* Verde */
+    background: rgba(74, 222, 128, 0.2) !important;
+}
+.wrong-answer {
+    border: 2px solid #ef4444 !important; /* Rojo */
+    background: rgba(239, 68, 68, 0.2) !important;
+}
+</style>
+</head>
+
+<body class="d-flex flex-column align-items-center py-4">
+
+<header class="container mb-4">
+  <div class="d-flex justify-content-between align-items-center glass-panel p-3">
+    <a href="Segundo_Bachillerato.html" class="btn btn-sm btn-outline-light rounded-pill px-3">
+       &larr; Trimestres
+    </a>
+
+    <span class="breadcrumb-text" id="breadcrumbs">Segundo Año > Primer Trimestre</span>
+  </div>
+</header>
+
+<main class="container text-center" style="max-width:900px">
+
+<div id="menu-view">
+  <h1 class="display-5 fw-bold mb-2">Genética y Biotecnología</h1>
+  
+  <div class="row g-3">
+    <div class="col-md-6 col-lg-3"><div class="btn btn-topic" onclick="loadTopic(1)">Genética mendeliana</div></div>
+    <div class="col-md-6 col-lg-3"><div class="btn btn-topic" onclick="loadTopic(2)">Leyes de Mendel</div></div>
+    <div class="col-md-6 col-lg-3"><div class="btn btn-topic" onclick="loadTopic(3)">Herencia ligada al sexo</div></div>
+    <div class="col-md-6 col-lg-3"><div class="btn btn-topic" onclick="loadTopic(4)">Mutación genética</div></div>
+
+    <div class="col-md-6 col-lg-3"><div class="btn btn-topic" onclick="loadTopic(5)">Ingeniería genética</div></div>
+    <div class="col-md-6 col-lg-3"><div class="btn btn-topic" onclick="loadTopic(6)">Biotecnología</div></div>
+    <div class="col-md-6 col-lg-3"><div class="btn btn-topic" onclick="loadTopic(7)">Clonación</div></div>
+    <div class="col-md-6 col-lg-3"><div class="btn btn-topic" onclick="loadTopic(8)">Terapia génica</div></div>
+
+    <div class="col-md-6 col-lg-3 offset-lg-3"><div class="btn btn-topic" onclick="loadTopic(9)">Proyecto Genoma</div></div>
+    <div class="col-md-6 col-lg-3"><div class="btn btn-topic" onclick="loadTopic(10)">Bioética</div></div>
+  </div>
+
+  <div class="row mt-4">
+      <div class="col-12">
+        <hr class="border-light opacity-50 my-2">
+        <button class="btn btn-topic btn-exam w-100 py-3" onclick="loadExam()">
+            📝 REALIZAR EXAMEN DE REPASO
+        </button>
+      </div>
+  </div>
+</div>
+
+<div id="content-view" class="d-none glass-panel p-5 text-start">
+  <h2 id="topic-title" class="border-bottom pb-3 mb-3"></h2>
+  <div id="topic-body" class="fs-5 fw-light"></div>
+
+  <div class="text-center mt-4">
+    <button class="btn btn-outline-light rounded-pill px-4" onclick="goHome()">Volver al menú</button>
+  </div>
+</div>
+
+<div id="exam-view" class="d-none glass-panel p-4 p-md-5 text-start">
+    <h2 class="border-bottom pb-3 mb-4 display-6 text-center">Examen: Genética y Biotecnología</h2>
+    
+    <div id="quiz-container">
+        </div>
+
+    <div id="quiz-result-area" class="text-center mt-4 d-none">
+        <h3 id="final-score" class="fw-bold display-4"></h3>
+        <p id="final-message" class="fs-5"></p>
+    </div>
+
+    <div class="text-center mt-5 d-flex justify-content-center gap-3">
+        <button id="btn-submit-exam" class="btn btn-light text-primary fw-bold rounded-pill px-5 py-2" onclick="checkExam()">Finalizar Examen</button>
+        <button class="btn btn-outline-light rounded-pill px-5 py-2" onclick="goHome()">Volver al menú</button>
+    </div>
+</div>
+
+</main>
+
+<script>
+// --- DATOS DE LOS TEMAS (TEORÍA) ---
+const topics = {
+1:{
+  title:"Genética mendeliana",
+  content:`
+  <div class="text-center"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTDZipr7lHobVZHObeu9EkalPfWLGAeReLtwA&s" class="img-fluid rounded mb-3"></div>
+  <p>Basada en los experimentos de Gregor Mendel con guisantes.</p>
+  <ul>
+    <li><strong>Gen:</strong> Fragmento de ADN que codifica un rasgo.</li>
+    <li><strong>Alelos:</strong> Variantes (Dominante A, Recesivo a).</li>
+    <li><strong>Heterocigoto:</strong> Alelos diferentes (Aa).</li>
+  </ul>`
+},
+2:{
+  title:"Leyes de Mendel",
+  content:`
+  <div class="text-center"><img src="https://cdn0.ecologiaverde.com/es/posts/2/4/4/leyes_de_mendel_que_son_y_ejemplos_6442_600.webp" class="img-fluid rounded mb-3"></div>
+  <p>Tres leyes fundamentales:</p>
+  <ul>
+    <li><strong>1. Uniformidad:</strong> Hijos de puras (AA x aa) son 100% híbridos iguales (Aa).</li>
+    <li><strong>2. Segregación:</strong> El rasgo recesivo reaparece en la segunda generación (25%).</li>
+    <li><strong>3. Transmisión Independiente:</strong> Rasgos distintos se heredan por separado.</li>
+  </ul>`
+},
+3:{
+  title:"Herencia ligada al sexo",
+  content:`
+  <div class="text-center"><img src="https://cdn.kastatic.org/ka-perseus-images/746aeb6163bab26028ec81be07c6c233919ba1ad.png" class="img-fluid rounded mb-3"></div>
+  <p>Genes ubicados en los cromosomas sexuales (X e Y).</p>
+  <ul>
+    <li>Los hombres (XY) son más propensos a enfermedades recesivas del X (Daltonismo, Hemofilia) porque solo tienen una copia.</li>
+    <li>Las mujeres (XX) suelen ser portadoras sanas.</li>
+  </ul>`
+},
+4:{
+  title:"Mutación genética",
+  content:`
+  <div class="text-center"><img src="https://www.revistamercado.do/wp-content/uploads/2023/01/thumbnail_Screen-Shot-2023-01-06-at-2.17.37-PM.png" class="img-fluid rounded mb-3"></div>
+  <p>Cambio en el ADN, motor de la evolución.</p>
+  <ul>
+    <li><strong>Génicas:</strong> Cambio puntual en un gen.</li>
+    <li><strong>Genómicas:</strong> Alteración en el número de cromosomas (Ej. Síndrome de Down).</li>
+  </ul>`
+},
+5:{
+  title:"Ingeniería genética",
+  content:`
+  <div class="text-center"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQGQsUqpky6tiiJnMvXhZO1Jg9FSZUtQsRxLA&s" class="img-fluid rounded mb-3"></div>
+  <p>Manipulación directa de genes.</p>
+  <ul>
+    <li><strong>CRISPR-Cas9:</strong> Herramienta de "edición" genética precisa y barata.</li>
+    <li>Usa "tijeras moleculares" (enzimas de restricción).</li>
+  </ul>`
+},
+6:{
+  title:"Biotecnología",
+  content:`
+  <div class="text-center"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQol7rqId5JW54HMLMP1MF9djroeHj7XQCGBA&s" class="img-fluid rounded mb-3"></div>
+  <ul>
+    <li><strong>Roja:</strong> Medicina (Vacunas, Insulina).</li>
+    <li><strong>Verde:</strong> Agricultura (Transgénicos).</li>
+    <li><strong>Blanca:</strong> Industrial.</li>
+    <li><strong>Gris:</strong> Ambiental (Biorremediación).</li>
+  </ul>`
+},
+7:{
+  title:"Clonación",
+  content:`
+  <div class="text-center"><img src="https://www.genome.gov/sites/default/files/inline-images/clonacion_0.jpg" class="img-fluid rounded mb-3"></div>
+  <ul>
+    <li><strong>Reproductiva:</strong> Crear un individuo idéntico (Oveja Dolly).</li>
+    <li><strong>Terapéutica:</strong> Crear células madre para curar tejidos.</li>
+  </ul>`
+},
+8:{
+  title:"Terapia génica",
+  content:`
+  <div class="text-center"><img src="https://dravetfoundation.eu/wp-content/uploads/2019/12/Terapia-genica.png" class="img-fluid rounded mb-3"></div>
+  <p>Tratar enfermedades corrigiendo el gen defectuoso directamente en el paciente.</p>`
+},
+9:{
+  title:"Proyecto genoma humano",
+  content:`
+  <div class="text-center"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRVNqzlFDewCZ_QvMDQ96IaRvlqAteINHGGtQ&s" class="img-fluid rounded mb-3"></div>
+  <p>Lectura completa del ADN humano (2003).</p>
+  <ul>
+    <li>Tenemos unos 20,000 genes.</li>
+    <li>Todos los humanos compartimos el 99.9% del ADN.</li>
+  </ul>`
+},
+10:{
+  title:"Bioética",
+  content:`
+  <div class="text-center"><img src="https://genotipia.com/wp-content/uploads/2020/12/Portada.png" class="img-fluid rounded mb-3"></div>
+  <p>Estudio de los aspectos éticos de la biología.</p>
+  <ul>
+    <li>Principios: Autonomía, Justicia, No maleficencia.</li>
+    <li>Dilemas: Bebés de diseño, privacidad genética.</li>
+  </ul>`
+}
+};
+
+// --- DATOS DEL EXAMEN (Genética y Bio) ---
+const questions = [
+    {
+        q: "Si cruzas una planta pura Dominante (AA) con una Recesiva (aa), ¿cómo serán los hijos?",
+        a: ["50% Dominantes, 50% Recesivos", "100% Recesivos (aa)", "100% Híbridos (Aa) con fenotipo Dominante", "Mezcla de colores"],
+        correct: 2
+    },
+    {
+        q: "¿Qué porcentaje de ADN compartimos todos los seres humanos?",
+        a: ["50%", "80%", "90%", "99.9%"],
+        correct: 3
+    },
+    {
+        q: "¿Qué rama de la biotecnología se encarga de la medicina (vacunas, fármacos)?",
+        a: ["Biotecnología Verde", "Biotecnología Roja", "Biotecnología Gris", "Biotecnología Azul"],
+        correct: 1
+    },
+    {
+        q: "¿Por qué el daltonismo afecta más a los hombres?",
+        a: ["Porque comen menos zanahorias", "Es una herencia ligada al cromosoma Y", "Solo tienen un cromosoma X y si falla no tienen respaldo", "Es contagioso"],
+        correct: 2
+    },
+    {
+        q: "¿Qué son las mutaciones genéticas?",
+        a: ["Siempre son enfermedades mortales", "Cambios en el ADN que impulsan la evolución", "Infecciones por bacterias", "Efectos de comer transgénicos"],
+        correct: 1
+    }
+];
+
+// --- FUNCIONES DE NAVEGACIÓN ---
+
+function loadTopic(id){
+  document.getElementById("menu-view").classList.add("d-none");
+  document.getElementById("exam-view").classList.add("d-none");
+  document.getElementById("content-view").classList.remove("d-none");
+  
+  document.getElementById("topic-title").innerText=topics[id].title;
+  document.getElementById("topic-body").innerHTML=topics[id].content;
+  document.getElementById("breadcrumbs").innerText="Segundo Año > Primer Trimestre > "+topics[id].title;
+  window.scrollTo(0, 0);
+}
+
+function goHome(){
+  document.getElementById("content-view").classList.add("d-none");
+  document.getElementById("exam-view").classList.add("d-none");
+  document.getElementById("menu-view").classList.remove("d-none");
+  document.getElementById("breadcrumbs").innerText="Segundo Año > Primer Trimestre";
+
+  // Resetear examen visualmente
+  document.getElementById("btn-submit-exam").style.display = "inline-block";
+  document.getElementById("quiz-result-area").classList.add("d-none");
+}
+
+// --- LÓGICA DEL EXAMEN ---
+
+function loadExam() {
+    document.getElementById("menu-view").classList.add("d-none");
+    document.getElementById("exam-view").classList.remove("d-none");
+    document.getElementById("breadcrumbs").innerText="Segundo Año > Primer Trimestre > Examen";
+    
+    // Generar el HTML de las preguntas
+    const container = document.getElementById("quiz-container");
+    container.innerHTML = ""; 
+    
+    questions.forEach((item, index) => {
+        let optionsHTML = "";
+        item.a.forEach((opt, optIndex) => {
+            optionsHTML += `
+                <label class="quiz-option" id="q${index}_opt${optIndex}">
+                    <input type="radio" name="question${index}" value="${optIndex}">
+                    ${opt}
+                </label>
+            `;
+        });
+
+        const questionHTML = `
+            <div class="mb-4">
+                <h5 class="fw-bold mb-3" style="color:white;">${index + 1}. ${item.q}</h5>
+                <div class="ms-2">
+                    ${optionsHTML}
+                </div>
+            </div>
+        `;
+        container.innerHTML += questionHTML;
+    });
+
+    document.getElementById("btn-submit-exam").style.display = "inline-block";
+    document.getElementById("quiz-result-area").classList.add("d-none");
+    window.scrollTo(0, 0);
+}
+
+function checkExam() {
+    let score = 0;
+    
+    questions.forEach((item, index) => {
+        const selected = document.querySelector(`input[name="question${index}"]:checked`);
+        const correctLabel = document.getElementById(`q${index}_opt${item.correct}`);
+        
+        if (selected) {
+            const val = parseInt(selected.value);
+            if (val === item.correct) {
+                score++;
+                correctLabel.classList.add("correct-answer");
+            } else {
+                document.getElementById(`q${index}_opt${val}`).classList.add("wrong-answer");
+                correctLabel.classList.add("correct-answer");
+            }
+        } else {
+            correctLabel.classList.add("correct-answer");
+        }
+    });
+
+    const finalScore = (score / questions.length) * 10;
+    
+    const resultArea = document.getElementById("quiz-result-area");
+    const scoreTitle = document.getElementById("final-score");
+    const message = document.getElementById("final-message");
+    
+    resultArea.classList.remove("d-none");
+    scoreTitle.innerText = finalScore + "/10";
+    
+    if(finalScore === 10) message.innerText = "¡Brillante! Podrías ser genetista.";
+    else if(finalScore >= 7) message.innerText = "¡Muy bien! Dominas las leyes de Mendel.";
+    else message.innerText = "Repasa la diferencia entre fenotipo y genotipo.";
+
+    document.getElementById("btn-submit-exam").style.display = "none";
+    resultArea.scrollIntoView({behavior: "smooth"});
+}
+</script>
+
+</body>
+</html>

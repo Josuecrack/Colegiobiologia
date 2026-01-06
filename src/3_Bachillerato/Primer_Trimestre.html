@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Primer Trimestre - Biología (2º Año)</title>
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+<style>
+body {
+    /* Gradiente Verde/Turquesa para evocar Naturaleza y Ecología */
+    background: linear-gradient(135deg, #134E5E 0%, #71B280 100%);
+    min-height: 100vh;
+    color: white;
+    font-family: 'Segoe UI', sans-serif;
+}
+
+.glass-panel {
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border-radius: 15px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+}
+
+.btn-topic {
+    background: rgba(255, 255, 255, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    color: white;
+    font-weight: 500;
+    transition: 0.3s;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 18px;
+    cursor: pointer;
+    text-shadow: 0 1px 2px rgba(0,0,0,0.1);
+}
+
+.btn-topic:hover {
+    background: rgba(255,255,255,0.35);
+    transform: translateY(-3px);
+    color: white;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+}
+
+/* --- ESTILOS AGREGADOS PARA EL EXAMEN --- */
+.btn-exam {
+    background: rgba(255, 255, 255, 0.15); /* Blanco translúcido */
+    border: 2px solid rgba(184, 242, 230, 0.7); /* Verde menta */
+    font-weight: bold;
+    font-size: 1.2rem;
+    color: #fff;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+.btn-exam:hover {
+    background: rgba(184, 242, 230, 0.3);
+    box-shadow: 0 0 20px rgba(184, 242, 230, 0.5);
+    transform: scale(1.02);
+}
+
+.quiz-option {
+    display: block;
+    background: rgba(0,0,0,0.25);
+    padding: 10px 15px;
+    margin-bottom: 10px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: 0.2s;
+    border: 1px solid transparent;
+}
+.quiz-option:hover {
+    background: rgba(255,255,255,0.15);
+}
+.quiz-option input {
+    margin-right: 10px;
+}
+.correct-answer {
+    border: 2px solid #4ade80 !important; /* Verde */
+    background: rgba(74, 222, 128, 0.2) !important;
+}
+.wrong-answer {
+    border: 2px solid #ef4444 !important; /* Rojo */
+    background: rgba(239, 68, 68, 0.2) !important;
+}
+/* ---------------------------------------- */
+
+.breadcrumb-text {
+    font-size: 0.9rem;
+    opacity: 0.9;
+}
+
+/* Ajuste para imágenes dentro del contenido */
+#topic-body img {
+    max-height: 300px;
+    width: auto;
+    max-width: 100%;
+    object-fit: cover;
+    background: rgba(255,255,255,0.9);
+    padding: 5px;
+    border-radius: 8px;
+    margin-bottom: 1rem;
+}
+
+/* Estilo para listas y subtítulos en el contenido */
+#topic-body h5 {
+    color: #b8f2e6; /* Verde menta claro para resaltar */
+    margin-top: 1.5rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    font-size: 1.1rem;
+}
+#topic-body ul {
+    list-style-type: none;
+    padding-left: 0;
+}
+#topic-body ul li {
+    background: rgba(0,0,0,0.2);
+    margin-bottom: 8px;
+    padding: 10px;
+    border-radius: 5px;
+    border-left: 4px solid #b8f2e6;
+}
+</style>
+</head>
+
+<body class="d-flex flex-column align-items-center py-4">
+
+<header class="container mb-4">
+  <div class="d-flex justify-content-between align-items-center glass-panel p-3">
+    <!-- Botón para volver atrás -->
+    <a href="Tercero_Bachillerato.html" class="btn btn-sm btn-outline-light rounded-pill px-3">
+       &larr; Trimestres
+    </a>
+
+    <span class="breadcrumb-text" id="breadcrumbs">Tercer Año > Primer Trimestre</span>
+  </div>
+</header>
+
+<main class="container text-center" style="max-width:900px">
+
+<!-- VISTA DE MENÚ -->
+<div id="menu-view">
+  <h1 class="display-5 fw-bold mb-4">Ecología y Medio Ambiente</h1>
+  
+  <div class="row g-3">
+    <div class="col-md-6 col-lg-3"><div class="btn btn-topic" onclick="loadTopic(1)">Ecología y ecosistemas</div></div>
+    <div class="col-md-6 col-lg-3"><div class="btn btn-topic" onclick="loadTopic(2)">Cadena alimentaria</div></div>
+    <div class="col-md-6 col-lg-3"><div class="btn btn-topic" onclick="loadTopic(3)">Ciclos biogeoquímicos</div></div>
+    <div class="col-md-6 col-lg-3"><div class="btn btn-topic" onclick="loadTopic(4)">Poblaciones y comunidades</div></div>
+
+    <div class="col-md-6 col-lg-3"><div class="btn btn-topic" onclick="loadTopic(5)">Factores ambientales</div></div>
+    <div class="col-md-6 col-lg-3"><div class="btn btn-topic" onclick="loadTopic(6)">Contaminación ambiental</div></div>
+    <div class="col-md-6 col-lg-3"><div class="btn btn-topic" onclick="loadTopic(7)">Cambio climático</div></div>
+    <div class="col-md-6 col-lg-3"><div class="btn btn-topic" onclick="loadTopic(8)">Conservación</div></div>
+
+    <div class="col-md-6 col-lg-3 offset-lg-3"><div class="btn btn-topic" onclick="loadTopic(9)">Desarrollo sostenible</div></div>
+    <div class="col-md-6 col-lg-3"><div class="btn btn-topic" onclick="loadTopic(10)">Recursos naturales</div></div>
+  </div>
+
+  <!-- SECCIÓN DEL BOTÓN DE EXAMEN (Añadido) -->
+  <div class="row mt-4">
+      <div class="col-12">
+        <hr class="border-light opacity-50 my-2">
+        <button class="btn btn-topic btn-exam w-100 py-3" onclick="loadExam()">
+            📝 REALIZAR EXAMEN DE REPASO
+        </button>
+      </div>
+  </div>
+</div>
+
+<!-- VISTA DE CONTENIDO -->
+<div id="content-view" class="d-none glass-panel p-4 p-md-5 text-start">
+  <h2 id="topic-title" class="border-bottom pb-3 mb-3 display-6"></h2>
+  <div id="topic-body" class="fs-5 fw-light"></div>
+
+  <div class="text-center mt-5">
+    <button class="btn btn-outline-light rounded-pill px-5 py-2" onclick="goHome()">Volver al menú</button>
+  </div>
+</div>
+
+<!-- VISTA DE EXAMEN (Nueva) -->
+<div id="exam-view" class="d-none glass-panel p-4 p-md-5 text-start">
+    <h2 class="border-bottom pb-3 mb-4 display-6 text-center">Examen: Ecología</h2>
+    
+    <div id="quiz-container">
+        <!-- Las preguntas se inyectan aquí con JS -->
+    </div>
+
+    <div id="quiz-result-area" class="text-center mt-4 d-none">
+        <h3 id="final-score" class="fw-bold display-4"></h3>
+        <p id="final-message" class="fs-5"></p>
+    </div>
+
+    <div class="text-center mt-5 d-flex justify-content-center gap-3">
+        <button id="btn-submit-exam" class="btn btn-light text-success fw-bold rounded-pill px-5 py-2" onclick="checkExam()">Finalizar Examen</button>
+        <button class="btn btn-outline-light rounded-pill px-5 py-2" onclick="goHome()">Volver al menú</button>
+    </div>
+</div>
+
+</main>
+
+<script>
+// --- CONTENIDO ORIGINAL INTACTO ---
+const topics = {
+1:{
+  title:"Ecología y ecosistemas",
+  content:`
+  <div class="text-center"><img src="https://lh4.googleusercontent.com/proxy/Da9EDwzvxji8QsVvdLZq-W53GpHdHRI1T-tJ09ngcxTlKquox_oTIv5SyUYZ0SiyMFW_eYUSFCYFfXuNM2VqXmLwmlk891ThpJpk6U3es37M2G33cNwYlyUzCPqig5UaYvDRPZco--X5N82qxEcVIg" class="img-fluid rounded mb-3" alt="Ecosistema lacustre"></div>
+  <p>La ecología es la ciencia que estudia las interacciones entre los seres vivos y su entorno. La unidad básica de estudio es el <strong>ecosistema</strong>.</p>
+  
+  <h5>Componentes del Ecosistema:</h5>
+  <ul>
+    <li><strong>Factores Bióticos (Biocenosis):</strong> Todos los seres vivos (plantas, animales, bacterias, hongos) y sus interacciones.</li>
+    <li><strong>Factores Abióticos (Biotopo):</strong> Componentes físicos y químicos sin vida, como la luz solar, temperatura, humedad, suelo, pH y agua.</li>
+  </ul>
+  <p>Los ecosistemas pueden ser terrestres (bosques, desiertos), acuáticos (océanos, lagos) o mixtos (humedales, costas).</p>`
+},
+2:{
+  title:"Cadena alimentaria",
+  content:`
+  <div class="text-center"><img src="https://www.ceupe.com/images/easyblog_articles/3129/cadena-alimenticia-eslabone_20220415-190700_1.png" class="img-fluid rounded mb-3" alt="Cadena trófica"></div>
+  <p>Describe cómo fluye la energía y la materia de un organismo a otro. En la naturaleza, estas cadenas se entrelazan formando <strong>redes tróficas</strong>.</p>
+
+  <h5>Niveles Tróficos:</h5>
+  <ul>
+    <li><strong>Productores (Autótrofos):</strong> Plantas y algas que producen su propia energía mediante fotosíntesis. Son la base.</li>
+    <li><strong>Consumidores (Heterótrofos):</strong>
+        <br>- <em>Primarios:</em> Herbívoros que comen plantas.
+        <br>- <em>Secundarios/Terciarios:</em> Carnívoros que comen a otros animales.</li>
+    <li><strong>Descomponedores:</strong> Hongos y bacterias que reciclan la materia orgánica muerta, devolviendo nutrientes al suelo.</li>
+  </ul>`
+},
+3:{
+  title:"Ciclos biogeoquímicos",
+  content:`
+  <div class="text-center"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/94/Water_cycle.png/640px-Water_cycle.png" class="img-fluid rounded mb-3" alt="Ciclo del agua"></div>
+  <p>A diferencia de la energía (que fluye y se disipa), la materia en la Tierra se recicla constantemente a través de ciclos que mueven elementos entre los seres vivos y el ambiente geológico.</p>
+  
+  <h5>Ciclos Principales:</h5>
+  <ul>
+    <li><strong>Ciclo del Agua (Hidrológico):</strong> Evaporación, condensación, precipitación y recolección. Vital para toda forma de vida.</li>
+    <li><strong>Ciclo del Carbono:</strong> Intercambio de CO2 entre la atmósfera, plantas (fotosíntesis) y animales (respiración), y combustibles fósiles.</li>
+    <li><strong>Ciclo del Nitrógeno:</strong> Bacterias fijadoras en el suelo convierten el nitrógeno del aire en nutrientes utilizables por las plantas.</li>
+  </ul>`
+},
+4:{
+  title:"Poblaciones y comunidades",
+  content:`
+  <div class="text-center"><img src="https://concepto.de/wp-content/uploads/2019/05/individuo-poblacion-comunidad.jpg" class="img-fluid rounded mb-3" alt="Población de pingüinos"></div>
+  <p>La ecología estudia la vida en diferentes niveles de organización jerárquica.</p>
+  
+  <h5>Diferencias Clave:</h5>
+  <ul>
+    <li><strong>Población:</strong> Grupo de organismos de la <em>misma especie</em> que viven en un área determinada y se reproducen entre sí. Se estudian propiedades como la densidad, tasa de natalidad y mortalidad.</li>
+    <li><strong>Comunidad (Biocenosis):</strong> Conjunto de <em>diferentes poblaciones</em> (especies distintas) que conviven e interactúan en un mismo hábitat.</li>
+  </ul>
+  <p>Las interacciones en la comunidad pueden ser competencia, depredación, mutualismo (ambos ganan) o parasitismo.</p>`
+},
+5:{
+  title:"Factores ambientales",
+  content:`
+  <div class="text-center"><img src="https://www.lifeder.com/wp-content/uploads/2020/04/clasificacion-factores-ambientales-559x420.jpg" class="img-fluid rounded mb-3" alt="Factores limitantes desierto"></div>
+  <p>Son los elementos del medio que actúan directamente sobre los seres vivos. Determinan dónde puede vivir una especie y cuántos individuos pueden sobrevivir.</p>
+
+  <h5>Tipos y Adaptaciones:</h5>
+  <ul>
+    <li><strong>Factores Limitantes:</strong> Es el recurso que se encuentra en menor cantidad y frena el crecimiento de la población. Ej: El agua en el desierto o la luz en el fondo del océano.</li>
+    <li><strong>Rango de Tolerancia:</strong> Cada especie tiene un rango óptimo (ej. temperatura entre 20°C y 30°C). Fuera de ese rango, la especie sufre estrés o muere.</li>
+    <li><strong>Adaptación:</strong> Evolución de características físicas o comportamientos para sobrevivir a estos factores (ej. cactus almacenando agua).</li>
+  </ul>`
+},
+6:{
+  title:"Contaminación ambiental",
+  content:`
+  <div class="text-center"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSAZaeA9nyC4gaLOXGRzcxCV8QouE0awAl7ZA&s" class="img-fluid rounded mb-3" alt="Contaminación del aire"></div>
+  <p>Es la introducción de sustancias o formas de energía nocivas en el medio ambiente, causando daños a los seres vivos y ecosistemas.</p>
+  
+  <h5>Tipos Principales:</h5>
+  <ul>
+    <li><strong>Atmosférica:</strong> Emisión de gases (CO, SO2) por industrias y vehículos. Causa lluvia ácida y problemas respiratorios.</li>
+    <li><strong>Hídrica:</strong> Vertido de plásticos, químicos y aguas residuales en ríos y mares.</li>
+    <li><strong>Del Suelo:</strong> Uso excesivo de pesticidas, fertilizantes y acumulación de basura sólida.</li>
+    <li><strong>Acústica y Lumínica:</strong> Exceso de ruido o luz artificial que altera los biorritmos de animales y humanos.</li>
+  </ul>`
+},
+7:{
+  title:"Cambio climático",
+  content:`
+  <div class="text-center"><img src="https://eqaecuador.com/wp-content/uploads/2024/07/verificacion-gei-scaled.jpg" class="img-fluid rounded mb-3" alt="Deshielo polar"></div>
+  <p>Es la alteración significativa y duradera de los patrones climáticos globales, acelerada drásticamente por la actividad humana desde la Revolución Industrial.</p>
+  
+  <h5>Causas y Efectos:</h5>
+  <ul>
+    <li><strong>Efecto Invernadero:</strong> Gases como el CO2 y Metano retienen el calor del sol. Es un proceso natural, pero el exceso de emisiones humanas lo ha intensificado peligrosamente.</li>
+    <li><strong>Calentamiento Global:</strong> Aumento de la temperatura media de la Tierra.</li>
+    <li><strong>Consecuencias:</strong> Deshielo de los polos, aumento del nivel del mar, eventos climáticos extremos (huracanes, sequías) y extinción de especies que no logran adaptarse.</li>
+  </ul>`
+},
+8:{
+  title:"Conservación",
+  content:`
+  <div class="text-center"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQtfDxj08H8eK-iQGrEfJOT_kMacJb8xtqKTA&s" class="img-fluid rounded mb-3" alt="Conservación de especies"></div>
+  <p>La biología de la conservación es una disciplina de crisis enfocada en proteger y restaurar la biodiversidad de la Tierra.</p>
+  
+  <h5>Estrategias de Protección:</h5>
+  <ul>
+    <li><strong>Áreas Protegidas:</strong> Parques Nacionales y Reservas de la Biosfera donde se prohíbe la explotación de recursos para preservar el hábitat.</li>
+    <li><strong>Conservación In-situ:</strong> Proteger a la especie en su propio medio (ej. patrullas anti-caza).</li>
+    <li><strong>Conservación Ex-situ:</strong> Protegerla fuera de su medio (zoológicos, bancos de semillas, jardines botánicos) para evitar la extinción total y reintroducirlas después.</li>
+  </ul>`
+},
+9:{
+  title:"Desarrollo sostenible",
+  content:`
+  <div class="text-center"><img src="https://scontent.fgye1-1.fna.fbcdn.net/v/t39.30808-6/464312737_27602871392660372_3587683452634419942_n.png?_nc_cat=104&ccb=1-7&_nc_sid=0b6b33&_nc_ohc=ufsoi-h0hXQQ7kNvwHzDef6&_nc_oc=Adkkf_WQQabqhPnXCXVfypKlIVrmGU8D5_rhFFJV7BqRKvvyy1RrUehQTJRjm02EZgI&_nc_zt=23&_nc_ht=scontent.fgye1-1.fna&_nc_gid=Y4wscI6uObZiQvf-zwip4w&oh=00_AfqrT2t4nDrfPKjx1b4hbzZhW0-xoaulj6zZGj1sGAyAYQ&oe=6961C95A" class="img-fluid rounded mb-3" alt="Energía renovable"></div>
+  <p>Definido por la ONU como "satisfacer las necesidades del presente sin comprometer la capacidad de las futuras generaciones para satisfacer sus propias necesidades".</p>
+  
+  <h5>Los 3 Pilares:</h5>
+  <ul>
+    <li><strong>Ambiental:</strong> El sistema debe ser ecológicamente viable (no agotar recursos).</li>
+    <li><strong>Social:</strong> Debe ser socialmente equitativo (justicia, educación, salud).</li>
+    <li><strong>Económico:</strong> Debe generar riqueza pero de forma distribuida y eficiente.</li>
+  </ul>
+  <p>El objetivo es equilibrar estos tres aspectos para lograr un futuro viable a largo plazo.</p>`
+},
+10:{
+  title:"Recursos naturales",
+  content:`
+  <div class="text-center"><img src="https://i.ytimg.com/vi/EVwqO0QqNUU/hq720.jpg?sqp=-oaymwEhCK4FEIIDSFryq4qpAxMIARUAAAAAGAElAADIQj0AgKJD&rs=AOn4CLDRXwMCbOqpAXyDa2pUuxd6Fnj3gQ" class="img-fluid rounded mb-3" alt="Recursos madereros"></div>
+  <p>Son elementos y fuerzas de la naturaleza que el ser humano utiliza para sostener su existencia. Su gestión es clave para la economía y la ecología.</p>
+  
+  <h5>Clasificación:</h5>
+  <ul>
+    <li><strong>Renovables:</strong> Se regeneran a una velocidad mayor a la de su consumo si se gestionan bien. (Ej. Energía solar, eólica, bosques, agua).</li>
+    <li><strong>No Renovables:</strong> Existen en cantidades limitadas y tardan millones de años en formarse. (Ej. Petróleo, carbón, gas natural, minerales).</li>
+    <li><strong>Inagotables:</strong> No se acaban por mucho que se usen (Ej. Luz solar, energía de las mareas).</li>
+  </ul>`
+}
+};
+
+// --- DATOS DEL EXAMEN (ECOLOGÍA) ---
+const questions = [
+    {
+        q: "¿Qué componente del ecosistema incluye la luz, la temperatura y el agua?",
+        a: ["Factores Bióticos", "Factores Abióticos", "Población", "Biocenosis"],
+        correct: 1
+    },
+    {
+        q: "¿Quiénes son los 'Productores' en una cadena alimentaria?",
+        a: ["Los leones", "Los hongos", "Las plantas y algas", "Los humanos"],
+        correct: 2
+    },
+    {
+        q: "¿Cómo se llama al conjunto de individuos de la misma especie en un lugar?",
+        a: ["Comunidad", "Biosfera", "Población", "Ecosistema"],
+        correct: 2
+    },
+    {
+        q: "¿Cuál es el principal gas causante del efecto invernadero aumentado?",
+        a: ["Oxígeno (O2)", "Dióxido de Carbono (CO2)", "Nitrógeno (N2)", "Argón"],
+        correct: 1
+    },
+    {
+        q: "La energía solar y eólica son ejemplos de recursos:",
+        a: ["No renovables", "Renovables / Inagotables", "Fósiles", "Contaminantes"],
+        correct: 1
+    }
+];
+
+// --- FUNCIONES DE NAVEGACIÓN ---
+
+function loadTopic(id){
+  document.getElementById("menu-view").classList.add("d-none");
+  document.getElementById("exam-view").classList.add("d-none");
+  document.getElementById("content-view").classList.remove("d-none");
+  
+  document.getElementById("topic-title").innerText=topics[id].title;
+  document.getElementById("topic-body").innerHTML=topics[id].content;
+  document.getElementById("breadcrumbs").innerText="Tercer Año > Primer Trimestre > "+topics[id].title;
+  window.scrollTo(0, 0);
+}
+
+function goHome(){
+  document.getElementById("content-view").classList.add("d-none");
+  document.getElementById("exam-view").classList.add("d-none");
+  document.getElementById("menu-view").classList.remove("d-none");
+  document.getElementById("breadcrumbs").innerText="Tercer Año > Primer Trimestre";
+  
+  // Resetear examen visualmente
+  document.getElementById("btn-submit-exam").style.display = "inline-block";
+  document.getElementById("quiz-result-area").classList.add("d-none");
+}
+
+// --- LÓGICA DEL EXAMEN ---
+
+function loadExam() {
+    document.getElementById("menu-view").classList.add("d-none");
+    document.getElementById("exam-view").classList.remove("d-none");
+    document.getElementById("breadcrumbs").innerText="Tercer Año > Primer Trimestre > Examen";
+    
+    // Generar el HTML de las preguntas
+    const container = document.getElementById("quiz-container");
+    container.innerHTML = ""; 
+    
+    questions.forEach((item, index) => {
+        let optionsHTML = "";
+        item.a.forEach((opt, optIndex) => {
+            optionsHTML += `
+                <label class="quiz-option" id="q${index}_opt${optIndex}">
+                    <input type="radio" name="question${index}" value="${optIndex}">
+                    ${opt}
+                </label>
+            `;
+        });
+
+        const questionHTML = `
+            <div class="mb-4">
+                <h5 class="fw-bold mb-3" style="color:#b8f2e6;">${index + 1}. ${item.q}</h5>
+                <div class="ms-2">
+                    ${optionsHTML}
+                </div>
+            </div>
+        `;
+        container.innerHTML += questionHTML;
+    });
+
+    document.getElementById("btn-submit-exam").style.display = "inline-block";
+    document.getElementById("quiz-result-area").classList.add("d-none");
+    window.scrollTo(0, 0);
+}
+
+function checkExam() {
+    let score = 0;
+    
+    questions.forEach((item, index) => {
+        const selected = document.querySelector(`input[name="question${index}"]:checked`);
+        const correctLabel = document.getElementById(`q${index}_opt${item.correct}`);
+        
+        if (selected) {
+            const val = parseInt(selected.value);
+            if (val === item.correct) {
+                score++;
+                correctLabel.classList.add("correct-answer");
+            } else {
+                document.getElementById(`q${index}_opt${val}`).classList.add("wrong-answer");
+                correctLabel.classList.add("correct-answer");
+            }
+        } else {
+            correctLabel.classList.add("correct-answer");
+        }
+    });
+
+    const finalScore = (score / questions.length) * 10;
+    
+    const resultArea = document.getElementById("quiz-result-area");
+    const scoreTitle = document.getElementById("final-score");
+    const message = document.getElementById("final-message");
+    
+    resultArea.classList.remove("d-none");
+    scoreTitle.innerText = finalScore + "/10";
+    
+    if(finalScore === 10) message.innerText = "¡Excelente! Eres un experto en ecología.";
+    else if(finalScore >= 7) message.innerText = "¡Muy bien! Tienes buena conciencia ambiental.";
+    else message.innerText = "Te recomiendo repasar los conceptos de ecosistemas.";
+
+    document.getElementById("btn-submit-exam").style.display = "none";
+    resultArea.scrollIntoView({behavior: "smooth"});
+}
+</script>
+
+</body>
+</html>

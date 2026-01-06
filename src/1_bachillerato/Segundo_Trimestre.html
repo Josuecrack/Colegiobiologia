@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Segundo Trimestre - Biología (1º Año)</title>
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+<style>
+body {
+    /* Gradiente Magenta/Violeta para evocar el interior celular y tinciones microscópicas */
+    background: linear-gradient(135deg, #cc2b5e 0%, #753a88 100%);
+    min-height: 100vh;
+    color: white;
+    font-family: 'Segoe UI', sans-serif;
+}
+
+.glass-panel {
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border-radius: 15px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
+}
+
+.btn-topic {
+    background: rgba(255, 255, 255, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    color: white;
+    font-weight: 500;
+    transition: 0.3s;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 18px;
+    cursor: pointer;
+    text-shadow: 0 1px 2px rgba(0,0,0,0.1);
+}
+
+.btn-topic:hover {
+    background: rgba(255,255,255,0.35);
+    transform: translateY(-3px);
+    color: white;
+    box-shadow: 0 4px 15px rgba(204, 43, 94, 0.4); /* Brillo magenta */
+}
+
+/* Estilo especial para el botón de examen */
+.btn-exam {
+    background: rgba(255, 215, 0, 0.25); /* Dorado translúcido */
+    border: 2px solid rgba(255, 215, 0, 0.6);
+    font-weight: bold;
+    font-size: 1.2rem;
+    color: #fff;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+.btn-exam:hover {
+    background: rgba(255, 215, 0, 0.45);
+    box-shadow: 0 0 20px rgba(255, 215, 0, 0.6);
+    transform: scale(1.02);
+}
+
+.breadcrumb-text {
+    font-size: 0.9rem;
+    opacity: 0.9;
+}
+
+/* Ajuste para imágenes dentro del contenido */
+#topic-body img {
+    max-height: 300px;
+    width: auto;
+    max-width: 100%;
+    object-fit: cover;
+    background: rgba(255,255,255,0.9);
+    padding: 5px;
+    border-radius: 8px;
+    margin-bottom: 1rem;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+}
+
+/* Estilo para listas y subtítulos en el contenido */
+#topic-body h5 {
+    color: #ffb7b2; /* Rosa pálido para resaltar */
+    margin-top: 1.5rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    font-size: 1.1rem;
+}
+#topic-body ul {
+    list-style-type: none;
+    padding-left: 0;
+}
+#topic-body ul li {
+    background: rgba(0,0,0,0.2);
+    margin-bottom: 8px;
+    padding: 10px;
+    border-radius: 5px;
+    border-left: 4px solid #ffb7b2;
+}
+
+/* Estilos para el Examen */
+.quiz-option {
+    display: block;
+    background: rgba(0,0,0,0.2);
+    padding: 10px 15px;
+    margin-bottom: 10px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: 0.2s;
+    border: 1px solid transparent;
+}
+.quiz-option:hover {
+    background: rgba(255,255,255,0.1);
+}
+.quiz-option input {
+    margin-right: 10px;
+}
+.correct-answer {
+    border: 2px solid #4ade80 !important; /* Verde */
+    background: rgba(74, 222, 128, 0.2) !important;
+}
+.wrong-answer {
+    border: 2px solid #ef4444 !important; /* Rojo */
+    background: rgba(239, 68, 68, 0.2) !important;
+}
+</style>
+</head>
+
+<body class="d-flex flex-column align-items-center py-4">
+
+<header class="container mb-4">
+  <div class="d-flex justify-content-between align-items-center glass-panel p-3">
+    <a href="Primero_Bachillerato.html" class="btn btn-sm btn-outline-light rounded-pill px-3">
+       &larr; Trimestres
+    </a>
+
+    <span class="breadcrumb-text" id="breadcrumbs">Primer Año > Segundo Trimestre</span>
+  </div>
+</header>
+
+<main class="container text-center" style="max-width:900px">
+
+<div id="menu-view">
+  <h1 class="display-5 fw-bold mb-4">La Célula y sus Procesos</h1>
+  
+  <div class="row g-3">
+    <div class="col-md-6 col-lg-3"><div class="btn btn-topic" onclick="loadTopic(1)">Ácidos nucleicos</div></div>
+    <div class="col-md-6 col-lg-3"><div class="btn btn-topic" onclick="loadTopic(2)">La célula</div></div>
+    <div class="col-md-6 col-lg-3"><div class="btn btn-topic" onclick="loadTopic(3)">Membrana celular</div></div>
+    <div class="col-md-6 col-lg-3"><div class="btn btn-topic" onclick="loadTopic(4)">Citoplasma</div></div>
+
+    <div class="col-md-6 col-lg-3"><div class="btn btn-topic" onclick="loadTopic(5)">Núcleo celular</div></div>
+    <div class="col-md-6 col-lg-3"><div class="btn btn-topic" onclick="loadTopic(6)">Metabolismo celular</div></div>
+    <div class="col-md-6 col-lg-3"><div class="btn btn-topic" onclick="loadTopic(7)">Respiración celular</div></div>
+    <div class="col-md-6 col-lg-3"><div class="btn btn-topic" onclick="loadTopic(8)">Fotosíntesis</div></div>
+
+    <div class="col-md-6 col-lg-3 offset-lg-3"><div class="btn btn-topic" onclick="loadTopic(9)">División celular</div></div>
+    <div class="col-md-6 col-lg-3"><div class="btn btn-topic" onclick="loadTopic(10)">Ciclo celular</div></div>
+  </div>
+
+  <div class="row mt-4">
+      <div class="col-12">
+        <hr class="border-light opacity-50 my-2">
+        <button class="btn btn-topic btn-exam w-100 py-3" onclick="loadExam()">
+            📝 REALIZAR EXAMEN DE REPASO
+        </button>
+      </div>
+  </div>
+</div>
+
+<div id="content-view" class="d-none glass-panel p-4 p-md-5 text-start">
+  <h2 id="topic-title" class="border-bottom pb-3 mb-3 display-6"></h2>
+  <div id="topic-body" class="fs-5 fw-light"></div>
+
+  <div class="text-center mt-5">
+    <button class="btn btn-outline-light rounded-pill px-5 py-2" onclick="goHome()">Volver al menú</button>
+  </div>
+</div>
+
+<div id="exam-view" class="d-none glass-panel p-4 p-md-5 text-start">
+    <h2 class="border-bottom pb-3 mb-4 display-6 text-center">Examen: Célula y Metabolismo</h2>
+    
+    <div id="quiz-container">
+        </div>
+
+    <div id="quiz-result-area" class="text-center mt-4 d-none">
+        <h3 id="final-score" class="fw-bold display-4"></h3>
+        <p id="final-message" class="fs-5"></p>
+    </div>
+
+    <div class="text-center mt-5 d-flex justify-content-center gap-3">
+        <button id="btn-submit-exam" class="btn btn-light text-danger fw-bold rounded-pill px-5 py-2" onclick="checkExam()">Finalizar Examen</button>
+        <button class="btn btn-outline-light rounded-pill px-5 py-2" onclick="goHome()">Volver al menú</button>
+    </div>
+</div>
+
+</main>
+
+<script>
+// --- DATOS DE LOS TEMAS (TEORÍA) ---
+const topics = {
+1:{
+  title:"Ácidos nucleicos",
+  content:`
+  <div class="text-center"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/0c/DNA_animation.gif/480px-DNA_animation.gif" class="img-fluid rounded mb-3" alt="ADN girando"></div>
+  <p>Son las moléculas de la herencia y la información. Están formados por cadenas de nucleótidos.</p>
+  <ul>
+    <li><strong>ADN:</strong> Doble hélice, contiene las instrucciones genéticas.</li>
+    <li><strong>ARN:</strong> Cadena simple, ejecuta las órdenes y fabrica proteínas.</li>
+  </ul>`
+},
+2:{
+  title:"La célula",
+  content:`
+  <div class="text-center"><img src="https://elpopular.cronosmedia.glr.pe/original/2022/04/18/625dd2bff3feab58124c5bc8.jpg" class="img-fluid rounded mb-3" alt="Célula"></div>
+  <p>Unidad básica de la vida.</p>
+  <h5>Teoría Celular:</h5>
+  <ul>
+    <li>Todo ser vivo está formado por células.</li>
+    <li>Es la unidad más pequeña viva.</li>
+    <li>Toda célula viene de otra (Biogénesis).</li>
+  </ul>`
+},
+3:{
+  title:"Membrana celular",
+  content:`
+  <div class="text-center"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/da/Cell_membrane_detailed_diagram_en.svg/640px-Cell_membrane_detailed_diagram_en.svg.png" class="img-fluid rounded mb-3" alt="Mosaico fluido"></div>
+  <p>Estructura de "Mosaico Fluido" que separa el interior del exterior.</p>
+  <ul>
+    <li><strong>Bicapa Lipídica:</strong> Barrera de fosfolípidos.</li>
+    <li><strong>Proteínas:</strong> Actúan como canales o receptores.</li>
+    <li><strong>Transporte:</strong> Puede ser Pasivo (sin energía) o Activo (con ATP).</li>
+  </ul>`
+},
+4:{
+  title:"Citoplasma",
+  content:`
+  <div class="text-center"><img src="https://cdn0.ecologiaverde.com/es/posts/7/3/4/estructura_del_citoplasma_6437_2_600.jpg" class="img-fluid rounded mb-3" alt="Citoplasma"></div>
+  <p>Material gelatinoso entre la membrana y el núcleo.</p>
+  <ul>
+    <li><strong>Citosol:</strong> Líquido acuoso.</li>
+    <li><strong>Citoesqueleto:</strong> Red de soporte y movimiento.</li>
+    <li><strong>Organelos:</strong> Ribosomas, Lisosomas, Golgi, etc.</li>
+  </ul>`
+},
+5:{
+  title:"Núcleo celular",
+  content:`
+  <div class="text-center"><img src="https://s1.significados.com/foto/nucleo-celular_bg.png?class=article" class="img-fluid rounded mb-3" alt="Núcleo"></div>
+  <p>Centro de control que protege el ADN.</p>
+  <ul>
+    <li><strong>Envoltura Nuclear:</strong> Doble membrana con poros.</li>
+    <li><strong>Cromatina:</strong> ADN + Histonas.</li>
+    <li><strong>Nucleolo:</strong> Produce ribosomas.</li>
+  </ul>`
+},
+6:{
+  title:"Metabolismo celular",
+  content:`
+  <div class="text-center"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ5OZpMUm9AvF4BWBrEMMEXmI_TSHC3ErbjjQ&s" class="img-fluid rounded mb-3" alt="Metabolismo"></div>
+  <p>Conjunto de reacciones químicas de la vida.</p>
+  <ul>
+    <li><strong>Catabolismo:</strong> Destruye moléculas para sacar energía (Ej: Respiración).</li>
+    <li><strong>Anabolismo:</strong> Usa energía para construir moléculas (Ej: Fotosíntesis).</li>
+  </ul>`
+},
+7:{
+  title:"Respiración celular",
+  content:`
+  <div class="text-center"><img src="https://tomi-digital-resources.storage.googleapis.com/images/classes/lessons/lsn-77199-5fbdda26d731b.jpeg" class="img-fluid rounded mb-3" alt="Mitocondria"></div>
+  <p>Obtención de energía (ATP) usando glucosa y oxígeno.</p>
+  <ul>
+    <li>Ocurre en la <strong>Mitocondria</strong>.</li>
+    <li>Libera CO2 y Agua como desechos.</li>
+  </ul>`
+},
+8:{
+  title:"Fotosíntesis",
+  content:`
+  <div class="text-center"><img src="https://i.pinimg.com/736x/db/67/c2/db67c2e1cdeebe9dd066f67bf6128799.jpg" class="img-fluid rounded mb-3" alt="Cloroplasto"></div>
+  <p>Proceso anabólico en plantas y algas (Cloroplastos).</p>
+  <ul>
+    <li><strong>Fase Luminosa:</strong> Usa luz y agua, libera Oxígeno.</li>
+    <li><strong>Fase Oscura:</strong> Usa CO2 para crear glucosa.</li>
+  </ul>`
+},
+9:{
+  title:"División celular",
+  content:`
+  <div class="text-center"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e0/Major_events_in_mitosis.svg/640px-Major_events_in_mitosis.svg.png" class="img-fluid rounded mb-3" alt="Mitosis"></div>
+  <ul>
+    <li><strong>Mitosis:</strong> Crea 2 células idénticas (crecimiento).</li>
+    <li><strong>Meiosis:</strong> Crea 4 células diferentes haploides (gametos sexuales).</li>
+  </ul>`
+},
+10:{
+  title:"Ciclo celular",
+  content:`
+  <div class="text-center"><img src="https://www.asturnatura.com/articulos/nucleo-mitosis-meiosis/ciclo-celular.webp" class="img-fluid rounded mb-3" alt="Ciclo celular"></div>
+  <p>Vida de la célula: Interfase (crecimiento y copia de ADN) y Fase M (división).</p>`
+}
+};
+
+// --- DATOS DEL EXAMEN (Adaptados al 2º Trimestre) ---
+const questions = [
+    {
+        q: "¿Qué organelo es responsable de la Respiración Celular (generar energía)?",
+        a: ["Ribosoma", "Mitocondria", "Aparato de Golgi", "Cloroplasto"],
+        correct: 1 
+    },
+    {
+        q: "¿Cuál es la función principal de la Mitosis?",
+        a: ["Crear gametos sexuales", "Digestión celular", "Generar 2 células idénticas para crecimiento", "Capturar luz solar"],
+        correct: 2
+    },
+    {
+        q: "¿Dónde se encuentra el material genético (ADN) en una célula eucariota?",
+        a: ["Disperso en el citoplasma", "Dentro del Núcleo", "En la membrana plasmática", "En el aparato de Golgi"],
+        correct: 1
+    },
+    {
+        q: "¿Qué proceso utiliza la luz solar para convertir CO2 y agua en glucosa?",
+        a: ["Respiración celular", "Fermentación", "Catabolismo", "Fotosíntesis"],
+        correct: 3
+    },
+    {
+        q: "¿Cómo se llama la estructura que regula qué entra y sale de la célula?",
+        a: ["Membrana Celular", "Citoplasma", "Ribosoma", "Nucléolo"],
+        correct: 0
+    }
+];
+
+// --- FUNCIONES DE NAVEGACIÓN ---
+
+function loadTopic(id){
+  document.getElementById("menu-view").classList.add("d-none");
+  document.getElementById("exam-view").classList.add("d-none");
+  document.getElementById("content-view").classList.remove("d-none");
+  
+  document.getElementById("topic-title").innerText=topics[id].title;
+  document.getElementById("topic-body").innerHTML=topics[id].content;
+  document.getElementById("breadcrumbs").innerText="Primer Año > Segundo Trimestre > "+topics[id].title;
+  window.scrollTo(0, 0);
+}
+
+function goHome(){
+  document.getElementById("content-view").classList.add("d-none");
+  document.getElementById("exam-view").classList.add("d-none"); 
+  document.getElementById("menu-view").classList.remove("d-none");
+  document.getElementById("breadcrumbs").innerText="Primer Año > Segundo Trimestre";
+  
+  // Resetear examen visualmente
+  document.getElementById("btn-submit-exam").style.display = "inline-block";
+  document.getElementById("quiz-result-area").classList.add("d-none");
+}
+
+// --- LÓGICA DEL EXAMEN ---
+
+function loadExam() {
+    document.getElementById("menu-view").classList.add("d-none");
+    document.getElementById("exam-view").classList.remove("d-none");
+    document.getElementById("breadcrumbs").innerText="Primer Año > Segundo Trimestre > Examen";
+    
+    // Generar el HTML de las preguntas
+    const container = document.getElementById("quiz-container");
+    container.innerHTML = ""; 
+    
+    questions.forEach((item, index) => {
+        let optionsHTML = "";
+        item.a.forEach((opt, optIndex) => {
+            optionsHTML += `
+                <label class="quiz-option" id="q${index}_opt${optIndex}">
+                    <input type="radio" name="question${index}" value="${optIndex}">
+                    ${opt}
+                </label>
+            `;
+        });
+
+        const questionHTML = `
+            <div class="mb-4">
+                <h5 class="fw-bold mb-3">${index + 1}. ${item.q}</h5>
+                <div class="ms-2">
+                    ${optionsHTML}
+                </div>
+            </div>
+        `;
+        container.innerHTML += questionHTML;
+    });
+
+    document.getElementById("btn-submit-exam").style.display = "inline-block";
+    document.getElementById("quiz-result-area").classList.add("d-none");
+    window.scrollTo(0, 0);
+}
+
+function checkExam() {
+    let score = 0;
+    
+    questions.forEach((item, index) => {
+        const selected = document.querySelector(`input[name="question${index}"]:checked`);
+        const correctLabel = document.getElementById(`q${index}_opt${item.correct}`);
+        
+        if (selected) {
+            const val = parseInt(selected.value);
+            if (val === item.correct) {
+                score++;
+                correctLabel.classList.add("correct-answer");
+            } else {
+                document.getElementById(`q${index}_opt${val}`).classList.add("wrong-answer");
+                correctLabel.classList.add("correct-answer");
+            }
+        } else {
+            correctLabel.classList.add("correct-answer");
+        }
+    });
+
+    const finalScore = (score / questions.length) * 10;
+    
+    const resultArea = document.getElementById("quiz-result-area");
+    const scoreTitle = document.getElementById("final-score");
+    const message = document.getElementById("final-message");
+    
+    resultArea.classList.remove("d-none");
+    scoreTitle.innerText = finalScore + "/10";
+    
+    if(finalScore === 10) message.innerText = "¡Excelente! Dominas la biología celular.";
+    else if(finalScore >= 7) message.innerText = "¡Muy bien! Conceptos claros.";
+    else message.innerText = "Repasa las funciones de los organelos y la mitosis.";
+
+    document.getElementById("btn-submit-exam").style.display = "none";
+    resultArea.scrollIntoView({behavior: "smooth"});
+}
+</script>
+
+</body>
+</html>
